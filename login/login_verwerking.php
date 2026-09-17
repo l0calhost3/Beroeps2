@@ -17,7 +17,7 @@ $pass = isset($_POST["login_pass"]) ? $_POST["login_pass"] : "";
 $errors = array();
 $submit = $_POST["SUBMIT"];
 
-    if ($submit == "login") {
+    if ($submit === "login") {
         if (!$_SERVER["REQUEST_METHOD"] == "POST") {
             array_push($errors, "Ongeldige post request");
         }
@@ -40,10 +40,11 @@ $submit = $_POST["SUBMIT"];
         $login_user = $stmt->fetch();
 //        echo $user . "<br>"; echo $pass. "<br>";
 
-        if ($login_user['user'] === $user && $login_user['pass'] === $pass) {
+        if ($login_user['user'] === $user && $login_user['pass'] === hash('sha256', $pass)) {
             session_start();
-            echo "<h1>Welcome " . $login_user['user'] . "</h1><br>";
+            $_SESSION['user'] = $login_user['user'];
             header("location: ../dashboard");
+
         }
         else{
             header("location: ./");
@@ -51,16 +52,17 @@ $submit = $_POST["SUBMIT"];
 
 
     }
-    if ($submit == "create") {
-        $create_pass = $_POST["create_pass"];
-        $create_user = $_POST["create_user"];
+    if ($submit === "Create") {
+        $create_pass = isset($_POST["create_pass"]) ? $_POST["create_pass"] : "";
+        $create_user = isset($_POST["create_input"]) ? $_POST["create_input"] : "";
+        var_dump($create_user); var_dump($create_pass);
         if (!$_SERVER["REQUEST_METHOD"] == "POST") {
             array_push($errors, "Ongeldige post request");
         }
-        if (empty($user) || empty($pass)) {
+        if (empty($create_user) || empty($create_pass)) {
             array_push($errors, "username of password is leeg");
         }
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $user) || !preg_match("/^[a-zA-Z0-9]*$/", $pass)) {
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $create_user) || !preg_match("/^[a-zA-Z0-9]*$/", $create_pass)) {
             array_push($errors, "Ongeldige naam");
         }
         if (!count($errors) == 0) {
@@ -68,17 +70,16 @@ $submit = $_POST["SUBMIT"];
                 echo $error . "<br>";
             }
         }
+        else{
+            $query = "
+            INSERT INTO users (user, pass) values (:username, :password);
+        ";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([
+                ':username' => $create_user,
+                ':password' => hash('sha256', $create_pass),
+            ]);
+            header("location: ./");
 
-
-
-
-        $query = "
-        INSERT INTO users (user, pass) values (:username, :password);
-    ";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([
-            ':username' => $create_user,
-            ':password' => hash('sha256', $create_pass),
-        ]);
-        header("Location:./");
+        }
     }

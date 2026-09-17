@@ -10,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+<h1>login</h1>
 <form action="./login_verwerking.php" method="POST">
     <label for="login_input">username</label>
     <input type="text" id="login_input" name="login_input">
@@ -18,13 +19,15 @@
     <input type="submit">
     <input type="text" value="login" name="SUBMIT" style="display: none">
 </form>
+<h1>create</h1>
+
 <form action="./login_verwerking.php" method="POST">
     <label for="create_input">username</label>
     <input type="text" id="create_input" name="create_input">
     <label for="create_pass">pass</label>
     <input type="password" id="create_pass" name="create_pass">
     <input type="submit">
-    <input type="text" value="login" name="SUBMIT" style="display: none">
+    <input type="text" value="Create" name="SUBMIT" style="display: none">
 
 </form>
 </body>

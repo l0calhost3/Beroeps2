@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    $user = $_SESSION['user'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,6 +12,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>welcome</h1>
+    <h1>welcome <?= $user?></h1>
 </body>
 </html>
