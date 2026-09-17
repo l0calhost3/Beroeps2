@@ -18,8 +18,6 @@ $errors = array();
 $submit = $_POST["SUBMIT"];
 
     if ($submit == "login") {
-
-
         if (!$_SERVER["REQUEST_METHOD"] == "POST") {
             array_push($errors, "Ongeldige post request");
         }
@@ -35,17 +33,20 @@ $submit = $_POST["SUBMIT"];
             }
         }
         //login part
-        $sql = "SELECT * FROM users WHERE username = :username";
+        $sql = "SELECT * FROM users WHERE user = :username";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':username', $user);
         $stmt->execute();
         $login_user = $stmt->fetch();
-        if ($login_user['username'] === $user || $login_user['password'] === $pass) {
+//        echo $user . "<br>"; echo $pass. "<br>";
+
+        if ($login_user['user'] === $user && $login_user['pass'] === $pass) {
             session_start();
-            var_dump($login_user);
+            echo "<h1>Welcome " . $login_user['user'] . "</h1><br>";
+            header("location: ../dashboard");
         }
         else{
-            echo "Invalid username or password";
+            header("location: ./");
         }
 
 
@@ -53,4 +54,18 @@ $submit = $_POST["SUBMIT"];
     if ($submit == "create") {
         $create_pass = $_POST["create_pass"];
         $create_user = $_POST["create_user"];
+        if (!$_SERVER["REQUEST_METHOD"] == "POST") {
+            array_push($errors, "Ongeldige post request");
+        }
+        if (empty($user) || empty($pass)) {
+            array_push($errors, "username of password is leeg");
+        }
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $user) || !preg_match("/^[a-zA-Z0-9]*$/", $pass)) {
+            array_push($errors, "Ongeldige naam");
+        }
+        if (!count($errors) == 0) {
+            foreach ($errors as $error) {
+                echo $error . "<br>";
+            }
+        }
     }
