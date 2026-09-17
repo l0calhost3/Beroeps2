@@ -68,4 +68,17 @@ $submit = $_POST["SUBMIT"];
                 echo $error . "<br>";
             }
         }
+
+
+
+
+        $query = "
+        INSERT INTO users (user, pass) values (:username, :password);
+    ";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([
+            ':username' => $create_user,
+            ':password' => hash('sha256', $create_pass),
+        ]);
+        header("Location:./");
     }
