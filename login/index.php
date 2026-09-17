@@ -16,7 +16,7 @@
     <label for="login_pass">pass</label>
     <input type="password" id="login_pass" name="login_pass">
     <input type="submit">
-    <input type="text" value="login" name="submit" style="display: none">
+    <input type="text" value="login" name="SUBMIT" style="display: none">
 </form>
 <form action="./login_verwerking.php" method="POST">
     <label for="create_input">username</label>
@@ -24,7 +24,7 @@
     <label for="create_pass">pass</label>
     <input type="password" id="create_pass" name="create_pass">
     <input type="submit">
-    <input type="text" value="login" name="submit" style="display: none">
+    <input type="text" value="login" name="SUBMIT" style="display: none">
 
 </form>
 </body>

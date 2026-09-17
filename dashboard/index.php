@@ -1,6 +1,5 @@
 <?php
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="./login/"
+    <h1>welcome</h1>
 </body>
 </html>

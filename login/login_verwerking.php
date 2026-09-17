@@ -1,12 +1,24 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+try {
+//connectie database
+    $pdo = new PDO("sqlite:../identifier.sqlite");
+}catch(PDOException $e){
+    echo $e->getMessage();
+}
+
+//$main = $pdo->prepare("SELECT * FROM users ORDER BY ID DESC");
+
+$user = isset($_POST["login_input"]) ? $_POST["login_input"] : "";
+$pass = isset($_POST["login_pass"]) ? $_POST["login_pass"] : "";
+
 $errors = array();
-$submit = $_POST["submit"];
+$submit = $_POST["SUBMIT"];
 
     if ($submit == "login") {
-        $user = $_POST["create_input"];
-        $pass = $_POST["create_pass"];
+
 
         if (!$_SERVER["REQUEST_METHOD"] == "POST") {
             array_push($errors, "Ongeldige post request");
@@ -21,9 +33,22 @@ $submit = $_POST["submit"];
             foreach ($errors as $error) {
                 echo $error . "<br>";
             }
-        } else {
-            echo "je bent ingelogd";
         }
+        //login part
+        $sql = "SELECT * FROM users WHERE username = :username";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':username', $user);
+        $stmt->execute();
+        $login_user = $stmt->fetch();
+        if ($login_user['username'] === $user || $login_user['password'] === $pass) {
+            session_start();
+            var_dump($login_user);
+        }
+        else{
+            echo "Invalid username or password";
+        }
+
+
     }
     if ($submit == "create") {
         $create_pass = $_POST["create_pass"];
