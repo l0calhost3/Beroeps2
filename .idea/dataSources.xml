@@ -15,11 +15,11 @@
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/identifier.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="CRUD-DB.sqlite" uuid="26b74f5e-acc4-4b29-8a86-a12ad1ce2436">
+    <data-source source="LOCAL" name="CRUD-DB" uuid="878c956a-c388-4588-86b9-b5e8c580a9f0">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:CRUD-DB.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/dashboard/CRUD/CRUD-DB.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
