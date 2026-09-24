@@ -1,0 +1,95 @@
+body{
+    margin: 0;
+    background: #415231;
+}
+header{
+    padding-top: 10px;
+    background: #9FB485;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+}
+.logo h1{
+    color: #FAF1E5;
+}
+.logo img{
+    padding: 10px;
+    height: 50px;
+    width: auto;
+}
+.menu a {
+    padding: 15px;
+    font-size: 20px;
+    color: #FAF1E5;
+    text-decoration: none;
+}
+.register a{
+    color: #FAF1E5;
+    margin-right: 20px;
+    text-decoration: none;
+    padding: 5px 40px;
+    border-radius: 20px;
+    border: 1px solid #FAF1E5;
+}
+
+.sign-in{
+    background-color: #000000;
+}
+.sign-up{
+    background-color: #687751;
+}
+.container{
+    margin-top: 80px;
+    min-height: 890px;
+}
+.intro{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.info{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.info h2, h3, p{
+    color: #FAF1E5;
+}
+h2{
+    margin: 0;
+    padding: 0;
+    font-size: 60px;
+}
+h3{
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+}
+p{
+    font-size: 30px;
+}
+
+.info a{
+    font-size: 20px;
+    color: #FAF1E5;
+    text-decoration: none;
+    padding: 5px 40px;
+    background: #000000;
+    border-radius: 40px;
+}
+
+.image img{
+    width: 800px;
+    height: auto;
+}
+
+.holder{
+    border-top:20px solid #000000;
+    margin-bottom: 10px;
+    min-width: 100%;
+    min-height: 100%;
+}
