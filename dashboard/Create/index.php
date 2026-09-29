@@ -20,19 +20,19 @@ $Categorie = $stmt->fetch();
     <title>Document</title>
 </head>
 <body>
-<form action="./Create.php" method="post">
+<form action="./Create.php" method="POST">
     <h1>vul hier je recept in</h1>
-    <input type="text" name="naam" id="" placeholder="naam recept">
+    <input type="text" name="naam" id="naam" placeholder="naam recept">
     <br><br>
-    <input type="text" name="Categories" id="" list="Categories" placeholder="wat voor categorie valt hij?">
+    <input type="text" name="Categories" id="Categories" list="Categories" placeholder="wat voor categorie valt hij?">
     <br><br>
-    <textarea name="benodigheden" id="" cols="30" rows="10" placeholder="benodigheden"></textarea>
+    <textarea name="benodigheden" id="benodigheden" cols="30" rows="10" placeholder="benodigheden"></textarea>
     <br><br>
-    <textarea name="voorstuk" id="" cols="30" rows="10" placeholder="voorstuk"></textarea>
+    <textarea name="voorstuk" id="voorstuk" cols="30" rows="10" placeholder="voorstuk"></textarea>
     <br><br>
-    <textarea name="StappenPlan" id="" cols="30" rows="10" placeholder="StappenPlan"></textarea>
+    <textarea name="StappenPlan" id="StappenPlan" cols="30" rows="10" placeholder="StappenPlan"></textarea>
     <br><br>
-    <textarea name="eindTekst" id="" cols="30" rows="10" placeholder="eindTekst"></textarea>
+    <textarea name="eindTekst" id="eindTekst" cols="30" rows="10" placeholder="eindTekst"></textarea>
     <br><br>
     <input type="submit" value="submit hier" placeholder="submit hier">
 </form>
