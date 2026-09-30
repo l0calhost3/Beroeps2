@@ -26,105 +26,114 @@
         <a class="sign-up" href="">sign up</a>
     </div>
 </header>
-
-<div class="container">
-    <div class="about">
-        <h2>Recepten</h2>
-    </div>
-    <div class="block-items">
-        <div class="block-item">
-            <img src="images/food.png" alt="#">
-            <div class="text">
-                <h2>Shrimps</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
-            </div>
-        </div>
-        <div class="block-item">
-            <img src="images/food.png" alt="#">
-            <div class="text">
-                <h2>Shrimps</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
-            </div>
-        </div>
-        <div class="block-item">
-            <img src="images/food.png" alt="#">
-            <div class="text">
-                <h2>Shrimps</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container lines">
-    <div class="second-block-items">
-        <div class="second-block-item">
-            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80" alt="Croissant">
-            <div class="recipe-text light">
-                <h2>Croissant</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
-            </div>
-        </div>
-
-        <div class="second-block-item">
-            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80" alt="Tempura">
-            <div class="recipe-text dark">
-                <h2>Ebi Tempura</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
-            </div>
-        </div>
-
-        <div class="second-block-item ">
-            <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80" alt="Macaroons">
-            <div class="recipe-text dark">
-                <h2>Macaroons</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
-            </div>
-        </div>
-    </div>
-</div>
 <section>
-<div class="container">
-    <div class="third-block-items">
-        <div class="third-block-item">
-            <div class="block-image">
-                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80" alt="Macaroons">
-            </div>
-            <div class="recipe-text light">
-                <h2>Croissant</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
-            </div>
+    <div class="container">
+        <div class="about">
+            <h2>Recepten</h2>
         </div>
-
-        <div class="third-block-item">
-            <div class="recipe-text light">
-                <h2>Ebi Tempura</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
+        <div class="block-items">
+            <div class="block-item light">
+                <img src="images/food.png" alt="#">
+                <div class="text">
+                    <h2>Shrimps</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
             </div>
-            <div class="block-image">
-                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80" alt="Macaroons">
+            <div class="block-item light">
+                <img src="images/food.png" alt="#">
+                <div class="text">
+                    <h2>Shrimps</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
             </div>
-        </div>
-
-        <div class="third-block-item ">
-            <div class="block-image">
-                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80" alt="Macaroons">
-            </div>
-            <div class="recipe-text light">
-                <h2>Macaroons</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                    has been the industry's standard dummy text ever since 1966</p>
+            <div class="block-item light">
+                <img src="images/food.png" alt="#">
+                <div class="text">
+                    <h2>Shrimps</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+<section class="background">
+    <div class="container lines">
+        <div class="second-block-items">
+            <div class="second-block-item">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
+                     alt="Croissant">
+                <div class="recipe-text light">
+                    <h2>Croissant</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
+            </div>
+
+            <div class="second-block-item">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80"
+                     alt="Tempura">
+                <div class="recipe-text dark">
+                    <h2>Ebi Tempura</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
+            </div>
+
+            <div class="second-block-item ">
+                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
+                     alt="Macaroons">
+                <div class="recipe-text dark">
+                    <h2>Macaroons</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container lines">
+        <div class="third-block-items">
+            <div class="third-block-item">
+                <div class="block-image">
+                    <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
+                         alt="Macaroons">
+                </div>
+                <div class="recipe-text light">
+                    <h2>Croissant</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
+            </div>
+
+            <div class="third-block-item">
+                <div class="recipe-text light">
+                    <h2>Ebi Tempura</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
+                <div class="block-image">
+                    <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
+                         alt="Macaroons">
+                </div>
+            </div>
+
+            <div class="third-block-item ">
+                <div class="block-image">
+                    <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
+                         alt="Macaroons">
+                </div>
+                <div class="recipe-text light">
+                    <h2>Macaroons</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                        has been the industry's standard dummy text ever since 1966</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <footer>
     <div class="end">
