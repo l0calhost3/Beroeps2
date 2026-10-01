@@ -5,10 +5,9 @@ try {
 }catch(PDOException $e){
     echo $e->getMessage();
 }
-$sql = "SELECT Categorie FROM CRUD";
+$sql = "SELECT DISTINCT categorie FROM CRUD ORDER BY categorie ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$Categorie = $stmt->fetch();
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,7 +23,7 @@ $Categorie = $stmt->fetch();
     <h1>vul hier je recept in</h1>
     <input type="text" name="naam" id="naam" placeholder="naam recept">
     <br><br>
-    <input type="text" name="Categories" id="Categories" list="Categories" placeholder="wat voor categorie valt hij?">
+    <input type="text" name="Categories" id="Categories_input" list="Categories" placeholder="wat voor categorie valt hij?">
     <br><br>
     <textarea name="benodigheden" id="benodigheden" cols="30" rows="10" placeholder="benodigheden"></textarea>
     <br><br>
@@ -40,9 +39,9 @@ $Categorie = $stmt->fetch();
 
 
 <datalist id="Categories">
-    <?php foreach ($Categorie as $category) { ?>
-        <option value="<?= $category ?>"><?= $category ?></option>
-    <?php } ?>
+    <?php while ($categorie = $stmt->fetch(PDO::FETCH_ASSOC)):?>) { ?>
+            <option value="<?php echo $categorie?>"><?php $categorie ?></option>
+    <?php endwhile; ?>} ?>
 </datalist>
 </body>
 </html>
