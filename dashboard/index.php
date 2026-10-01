@@ -26,7 +26,7 @@ $CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <h1>Hello World!</h1>
-
+<a href="./Create">create</a>
 <table border="1px">
 
     <tr>
