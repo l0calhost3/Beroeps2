@@ -32,7 +32,7 @@
             <h2>Recepten</h2>
         </div>
         <div class="block-items">
-            <div class="block-item light">
+            <div class="block-item light recipe-card">
                 <img src="images/food.png" alt="#">
                 <div class="text">
                     <h2>Shrimps</h2>
@@ -40,7 +40,7 @@
                         has been the industry's standard dummy text ever since 1966</p>
                 </div>
             </div>
-            <div class="block-item light">
+            <div class="block-item light recipe-card">
                 <img src="images/food.png" alt="#">
                 <div class="text">
                     <h2>Shrimps</h2>
@@ -48,7 +48,7 @@
                         has been the industry's standard dummy text ever since 1966</p>
                 </div>
             </div>
-            <div class="block-item light">
+            <div class="block-item light recipe-card">
                 <img src="images/food.png" alt="#">
                 <div class="text">
                     <h2>Shrimps</h2>
@@ -62,7 +62,7 @@
 <section class="background">
     <div class="container lines">
         <div class="second-block-items">
-            <div class="second-block-item">
+            <div class="second-block-item recipe-card">
                 <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
                      alt="Croissant">
                 <div class="recipe-text light">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="second-block-item">
+            <div class="second-block-item recipe-card">
                 <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80"
                      alt="Tempura">
                 <div class="recipe-text dark">
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="second-block-item ">
+            <div class="second-block-item recipe-card">
                 <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
                      alt="Macaroons">
                 <div class="recipe-text dark">
@@ -97,7 +97,7 @@
 <section>
     <div class="container lines">
         <div class="third-block-items">
-            <div class="third-block-item">
+            <div class="third-block-item recipe-card">
                 <div class="block-image">
                     <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
                          alt="Macaroons">
@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-            <div class="third-block-item">
+            <div class="third-block-item recipe-card">
                 <div class="recipe-text light">
                     <h2>Ebi Tempura</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-            <div class="third-block-item ">
+            <div class="third-block-item recipe-card">
                 <div class="block-image">
                     <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
                          alt="Macaroons">
@@ -144,6 +144,16 @@
         </a>
     </div>
 </footer>
-<form action="./login/"
+<div class="recipe-modal" id="recipe-modal" hidden>
+    <div class="recipe-modal-content" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title">
+        <button class="recipe-modal-close" type="button" aria-label="Sluiten">&times;</button>
+        <img class="recipe-modal-image" src="" alt="">
+        <div class="recipe-modal-text">
+            <h2 id="recipe-modal-title"></h2>
+            <p></p>
+        </div>
+    </div>
+</div>
+<script src="js/frontend.js"></script>
 </body>
 </html>

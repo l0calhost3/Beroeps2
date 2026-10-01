@@ -72,7 +72,7 @@
         </div>
         <div class="example-items">
 
-            <div class="example-item">
+            <div class="example-item recipe-card">
                 <div class="block-image">
                     <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
                          alt="#">
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="example-item">
+            <div class="example-item recipe-card">
                 <div class="example-text light">
                     <h2>Ebi Tempura</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
@@ -110,7 +110,17 @@
         </a>
     </div>
 </footer>
-<form action="./login/"
+<div class="recipe-modal" id="recipe-modal" hidden>
+    <div class="recipe-modal-content" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title">
+        <button class="recipe-modal-close" type="button" aria-label="Sluiten">&times;</button>
+        <img class="recipe-modal-image" src="" alt="">
+        <div class="recipe-modal-text">
+            <h2 id="recipe-modal-title"></h2>
+            <p></p>
+        </div>
+    </div>
+</div>
+<script src="js/frontend.js"></script>
 
 </body>
 </html>

@@ -288,6 +288,90 @@ p {
     overflow: hidden;
 }
 
+.recipe-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover,
+.recipe-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.recipe-modal[hidden] {
+    display: none;
+}
+
+.recipe-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.72);
+}
+
+.recipe-modal-content {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    background: #9FB485;
+    border: 3px solid #FAF1E5;
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.recipe-modal-image {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+}
+
+.recipe-modal-text {
+    padding: 24px 30px 30px;
+}
+
+.recipe-modal-text h2 {
+    color: #FAF1E5;
+    font-size: 38px;
+    font-weight: 400;
+    margin: 0;
+    border-bottom: 3px solid #FAF1E5;
+    display: inline-block;
+}
+
+.recipe-modal-text p {
+    color: #FAF1E5;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 15px 0 0;
+}
+
+.recipe-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    z-index: 1;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    color: #FAF1E5;
+    background: #000000;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
 .block-image img {
     width: 500px;
     height: 300px;
