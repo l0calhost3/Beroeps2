@@ -38,6 +38,7 @@ $CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
         <th>Stappenplan</th>
         <th>Eind tekst</th>
         <th>more</th>
+        <th>update</th>
     </tr>
 
 
@@ -54,6 +55,7 @@ $CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?= $row['StappenPlan']?></td>
             <td><?= $row['EindTekst']?></td>
             <td><a href="./Read/index.php?ID=<?= $row['ID']?>">aaaa</a></td>
+            <td><a href="./Update/index.php?ID=<?= $row['ID']?>">aaaa</a></td>
         </tr>
 
     <?php } ?>

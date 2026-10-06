@@ -5,6 +5,7 @@ $benodigdheden = $_POST["benodigheden"];
 $voorstuk = $_POST["voorstuk"];
 $stappenplanning = $_POST["StappenPlan"];
 $eindtekst = $_POST["eindTekst"];
+
  if (!$_SERVER["REQUEST_METHOD"] == "POST") {
      echo 'request methode is niet goedgekeurd';
  }
