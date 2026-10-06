@@ -31,7 +31,7 @@
         <div class="about">
             <h2>Recepten</h2>
         </div>
-        <div class="block-items">
+        <div class="block-items recepten-grid">
             <div class="block-item light recipe-card">
                 <img src="images/food.png" alt="#">
                 <div class="text">

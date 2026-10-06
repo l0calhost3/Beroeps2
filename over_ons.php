@@ -44,7 +44,7 @@
         <div class="about">
             <h2>Over ons</h2>
         </div>
-        <div class="block-items">
+        <div class="block-items grid">
             <div class="block-item dark">
                 <img class="size" src="images/yaroslav.png" alt="#">
                 <div class="text">
@@ -72,7 +72,7 @@
                     <h2>Christiaan</h2>
                     <p>Frontend DEV</p>
                 </div>
-            </div
+            </div>
         </div>
     </div>
     <div class="our-info">
