@@ -112,6 +112,7 @@ p {
 
 
 .holder {
+    min-width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
@@ -387,8 +388,8 @@ body.modal-open {
 }
 
 .example-item {
-    width: 90%;
-    height: 420px;
+    width: 65%;
+    height: 400px;
     display: flex;
     border-radius: 25px;
     overflow: hidden;
