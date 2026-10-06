@@ -1,20 +1,13 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-
-
 $db = new PDO('sqlite:../CRUD-DB.sqlite');
-
 $ID=$_GET['ID'];
-
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 $query = $db->QUERY('SELECT * FROM CRUD where ID = :ID');
 $query->bindParam(':ID', $ID);
 $query->execute();
-
 $CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!doctype html>
