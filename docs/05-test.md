@@ -6,7 +6,9 @@ Wue testeb het: 2 Studenten uit de klas
 #2 testresults
 
 Testpersoon 1:
+
 -Taak geslaagd: Ja
+
 -opmerking: Knoppen waren te klein.
 
 Testpersoon 2
