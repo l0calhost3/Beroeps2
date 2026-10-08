@@ -1,3 +1,38 @@
+// Scroll
+const next = document.getElementById("button-next");
+const prev = document.getElementById("button-prev");
+const image = document.getElementById("image");
+
+let images = [
+    "../images/image.png",
+    "../images/yaroslav.png",
+    "../images/niels.png",
+    "../images/sven.png",
+    "../images/christiaan.png",
+];
+
+let currentImage = 0;
+
+next.addEventListener("click", () => {
+    image.style.opacity = "0";
+
+    setTimeout(() => {
+        currentImage = (currentImage + 1) % images.length;
+        image.src = images[currentImage];
+        image.style.opacity = "1";
+    }, 300);
+})
+prev.addEventListener("click", () => {
+    image.style.opacity = "0";
+
+    setTimeout(() => {
+        currentImage = (currentImage - 1 + images.length) % images.length;
+        image.src = images[currentImage];
+        image.style.opacity = "1";
+    }, 300);
+})
+
+// Big image
 const recipeModal = document.querySelector('#recipe-modal');
 
 if (recipeModal) {

@@ -39,8 +39,10 @@
                     <br>dummy text ever since 1966,</p>
                 <a href="recepten.php">Bekijk recepten -></a>
             </div>
-            <div class="image">
-                <img src="images/image.png" alt="#">
+            <div class="scroll">
+                <button id="button-prev" class="arrow left"></button>
+                <img id="image" src="images/image.png" alt="#">
+                <button id="button-next" class="arrow right"></button>
             </div>
         </div>
     </div>

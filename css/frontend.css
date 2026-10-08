@@ -166,12 +166,45 @@ p {
     border-radius: 999px;
     box-shadow: 0 15px 25px rgba(33, 42, 28, 0.22);
 }
+.scroll{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
 
-.image img {
-    width: min(800px, 90vw);
-    height: auto;
+#image {
+    width: 700px;
+    height: 700px;
+    object-fit: cover;
+    border: 5px solid var(--cream);
     border-radius: 30px;
     box-shadow: 0 26px 45px rgba(29, 35, 25, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+
+.arrow {
+    width: 50px;
+    height: 60px;
+    background-color: var(--cream);
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s ease, transform 0.3s ease;
+}
+
+.left {
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.right {
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.arrow:hover {
+    background-color: var(--bg-soft);
+    transform: scale(1.15);
+    transition: 0.3s ease, transform 0.3s ease;
 }
 
 .lines {
