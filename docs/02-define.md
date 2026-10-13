@@ -4,19 +4,29 @@
 empathize fase].*
 
 
-## 2. Programma van Eisen (MoSCoW)
-**Must Haves:**
-* De app moet responsive zijn.
-* een CRUD applicatie wezen.
-* 
-**Should Haves:**
-* De app moet een goed uiterlijk hebben.
-* Een werkende website.
+Overzicht van de Moscow-prioriteiten
 
-**Won't Haves:**
-* Integr0atie met echte supermarkt API's.
-* 2 step authenticator verification.
 
-**Could have**
-* Foto's van het product.
-* Reacties op het product.
+Must have
+
+Snel, goedkope producten en eenvoudig koken
+
+De belangrijkste kookdrempels wegnemen
+
+Should have
+
+Filters, video's en boodschappenlijstjes
+
+Zelfstandig koken makkelijker maken
+
+Could have
+
+Gamification en persoonlijke suggesties
+
+Koken leuker en motiverender maken
+
+Won't have
+
+Bezorgservice en uitgebreide extra functies (want dat kan natuurlijk niet lol)
+
+payment requirements
