@@ -6,7 +6,7 @@ Team 9: Yaroslav, Niels, Sven en Christiaan
 ## 1. Wireframes (Lo-Fi)
 
 Eerst hebben we wireframes gemaakt in Figma. Dit zijn simpele grijze schetsen zonder kleur en zonder echte foto's. Zo konden we eerst de indeling van de pagina's bepalen.
-![LO-Fi](./assets/lofi.png)
+![LO-Fi](assets/lofi.png)
 
 ### Op elke pagina
 
@@ -74,7 +74,7 @@ Donkergroen gebruiken we voor de achtergrond. Saliegroen gebruiken we voor de he
 
 ### Hi-Fi ontwerpen
 
-![HI-Fi](./assets/hifi.png)
+![HI-Fi](assets/hifi.png)
 
 
 ## 3. Technische architectuur
