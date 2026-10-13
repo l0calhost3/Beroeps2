@@ -23,10 +23,10 @@ Eerst hebben we wireframes gemaakt in Figma. Dit zijn simpele grijze schetsen zo
 
 ### Receptenpagina
 
-- Bovenaan een zoekbalk en een filterbalk met 7 knoppen.
-- Daaronder 3 receptkaarten naast elkaar met een foto, titel en korte tekst.
-- Daarna 3 brede kaarten onder elkaar.
-- Onderaan 3 gerechten met foto en tekst naast elkaar, links en rechts afwisselend.
+- Bovenaan een zoekbalk en een filterbalk.
+- Daaronder receptkaarten naast elkaar met een foto, titel en korte tekst.
+- Daarna brede kaarten onder elkaar.
+- Onderaan gerechten met foto en tekst naast elkaar, links en rechts afwisselend.
 
 ### Over ons
 
