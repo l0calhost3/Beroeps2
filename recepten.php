@@ -31,8 +31,21 @@
         <div class="about">
             <h2>Recepten</h2>
         </div>
+        <div class="recipe-filters" aria-label="Recepten filteren">
+            <div class="recipe-categories" role="group" aria-label="Filter op categorie">
+                <button class="recipe-filter active" type="button" data-category="all">Alle</button>
+                <button class="recipe-filter" type="button" data-category="soepen">Soepen</button>
+                <button class="recipe-filter" type="button" data-category="hoofdgerechten">Hoofdgerechten</button>
+                <button class="recipe-filter" type="button" data-category="desserts">Desserts</button>
+                <button class="recipe-filter" type="button" data-category="ontbijt">Ontbijt</button>
+            </div>
+            <label class="recipe-search">
+                <span>Zoek op naam</span>
+                <input id="recipe-search" type="search" placeholder="Bijv. Croissant" autocomplete="off">
+            </label>
+        </div>
         <div class="block-items recepten-grid">
-            <div class="block-item light recipe-card">
+            <div class="block-item light recipe-card" data-category="hoofdgerechten">
                 <img src="images/food.png" alt="#">
                 <div class="text">
                     <h2>Shrimps</h2>
@@ -40,7 +53,7 @@
                         has been the industry's standard dummy text ever since 1966</p>
                 </div>
             </div>
-            <div class="block-item light recipe-card">
+            <div class="block-item light recipe-card" data-category="hoofdgerechten">
                 <img src="images/food.png" alt="#">
                 <div class="text">
                     <h2>Shrimps</h2>
@@ -48,7 +61,7 @@
                         has been the industry's standard dummy text ever since 1966</p>
                 </div>
             </div>
-            <div class="block-item light recipe-card">
+            <div class="block-item light recipe-card" data-category="hoofdgerechten">
                 <img src="images/food.png" alt="#">
                 <div class="text">
                     <h2>Shrimps</h2>
@@ -56,13 +69,14 @@
                         has been the industry's standard dummy text ever since 1966</p>
                 </div>
             </div>
+            <p class="recipe-no-results" hidden>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
         </div>
     </div>
 </section>
 <section class="background">
     <div class="container lines">
         <div class="second-block-items">
-            <div class="second-block-item recipe-card">
+            <div class="second-block-item recipe-card" data-category="desserts">
                 <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
                      alt="Croissant">
                 <div class="recipe-text light">
@@ -72,7 +86,7 @@
                 </div>
             </div>
 
-            <div class="second-block-item recipe-card">
+            <div class="second-block-item recipe-card" data-category="hoofdgerechten">
                 <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80"
                      alt="Tempura">
                 <div class="recipe-text dark">
@@ -82,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="second-block-item recipe-card">
+            <div class="second-block-item recipe-card" data-category="desserts">
                 <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
                      alt="Macaroons">
                 <div class="recipe-text dark">
@@ -97,7 +111,7 @@
 <section>
     <div class="container lines">
         <div class="third-block-items">
-            <div class="third-block-item recipe-card">
+            <div class="third-block-item recipe-card" data-category="desserts">
                 <div class="block-image">
                     <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
                          alt="Macaroons">
@@ -109,7 +123,7 @@
                 </div>
             </div>
 
-            <div class="third-block-item recipe-card">
+            <div class="third-block-item recipe-card" data-category="hoofdgerechten">
                 <div class="recipe-text light">
                     <h2>Ebi Tempura</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
@@ -121,7 +135,7 @@
                 </div>
             </div>
 
-            <div class="third-block-item recipe-card">
+            <div class="third-block-item recipe-card" data-category="desserts">
                 <div class="block-image">
                     <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
                          alt="Macaroons">

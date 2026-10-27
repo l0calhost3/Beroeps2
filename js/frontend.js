@@ -13,24 +13,26 @@ let images = [
 
 let currentImage = 0;
 
-next.addEventListener("click", () => {
-    image.style.opacity = "0";
+if (next && prev && image) {
+    next.addEventListener("click", () => {
+        image.style.opacity = "0";
 
-    setTimeout(() => {
-        currentImage = (currentImage + 1) % images.length;
-        image.src = images[currentImage];
-        image.style.opacity = "1";
-    }, 300);
-})
-prev.addEventListener("click", () => {
-    image.style.opacity = "0";
+        setTimeout(() => {
+            currentImage = (currentImage + 1) % images.length;
+            image.src = images[currentImage];
+            image.style.opacity = "1";
+        }, 300);
+    });
+    prev.addEventListener("click", () => {
+        image.style.opacity = "0";
 
-    setTimeout(() => {
-        currentImage = (currentImage - 1 + images.length) % images.length;
-        image.src = images[currentImage];
-        image.style.opacity = "1";
-    }, 300);
-})
+        setTimeout(() => {
+            currentImage = (currentImage - 1 + images.length) % images.length;
+            image.src = images[currentImage];
+            image.style.opacity = "1";
+        }, 300);
+    });
+}
 
 // Big image
 const recipeModal = document.querySelector('#recipe-modal');
@@ -88,4 +90,49 @@ if (recipeModal) {
 			closeRecipeModal();
 		}
 	});
+}
+
+
+
+// Recipe filter and search
+const recipeFilters = document.querySelector('.recipe-filters');
+
+if (recipeFilters) {
+    const filterButtons = recipeFilters.querySelectorAll('.recipe-filter');
+    const searchInput = recipeFilters.querySelector('#recipe-search');
+    const recipeCards = document.querySelectorAll('.recipe-card');
+    const noResults = document.querySelector('.recipe-no-results');
+    let selectedCategory = 'all';
+
+    const filterRecipes = () => {
+        const searchTerm = searchInput.value.trim().toLocaleLowerCase();
+        let visibleRecipes = 0;
+
+        recipeCards.forEach((card) => {
+            const title = card.querySelector('h2');
+            const matchesCategory = selectedCategory === 'all' || card.dataset.category === selectedCategory;
+            const matchesSearch = title && title.textContent.toLocaleLowerCase().includes(searchTerm);
+            const isVisible = matchesCategory && matchesSearch;
+
+            card.hidden = !isVisible;
+            if (isVisible) {
+                visibleRecipes += 1;
+            }
+        });
+
+        noResults.hidden = visibleRecipes > 0;
+    };
+
+    filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            selectedCategory = button.dataset.category;
+            filterButtons.forEach((filterButton) => {
+                filterButton.classList.toggle('active', filterButton === button);
+            });
+            filterRecipes();
+        });
+    });
+
+    searchInput.addEventListener('input', filterRecipes);
+    filterRecipes();
 }
