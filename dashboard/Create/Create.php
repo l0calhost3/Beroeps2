@@ -44,5 +44,5 @@ else{
     foreach ($error as $errors) {
         echo $errors;
     }
-    echo '<br><a href="./">Terug naar home</a>';
+    echo '<br><a href="./">Terug naar de from</a>';
 }

@@ -58,6 +58,9 @@ $CRUDS = $query->fetchAll(PDO::FETCH_ASSOC);
         <br><br>
         <input type="submit" value="submit hier" placeholder="submit hier">
         <input type="text" value="<?= $CRUD['ID']?>" name="ID" hidden>
+
+        <br>
+        <a href="../">terug</a>
     </form>
 
 <?php } ?>

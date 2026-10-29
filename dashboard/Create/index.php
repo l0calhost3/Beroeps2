@@ -35,6 +35,8 @@ $categories = $stmt->fetchAll();
     <textarea name="eindTekst" id="eindTekst" cols="30" rows="10" placeholder="eindTekst"></textarea>
     <br><br>
     <input type="submit" value="submit hier" placeholder="submit hier">
+    <br>
+    <a href="../">terug</a>
 </form>
 
 
