@@ -8,6 +8,7 @@ try {
 $sql = "SELECT DISTINCT categorie FROM CRUD ORDER BY categorie ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
+$categories = $stmt->fetchAll();
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,9 +40,12 @@ $stmt->execute();
 
 
 <datalist id="Categories">
-    <?php while ($categorie = $stmt->fetch(PDO::FETCH_ASSOC)):?>) { ?>
-            <option value="<?php echo $categorie?>"><?php $categorie ?></option>
-    <?php endwhile; ?>} ?>
+    <?php foreach ($categories as $category) { ?>
+        <option value="<?= htmlspecialchars($category['Categorie']) ?>">
+            <?= htmlspecialchars($category['Categorie']) ?>
+            <!--             i am Upset with my self-->
+        </option>
+    <?php } ?>
 </datalist>
 </body>
 </html>

@@ -34,40 +34,43 @@ $CRUDS = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <?php foreach ($CRUDS as $CRUD) { ?>
 
-<form action="./Update.php?ID=<?= $CRUD['ID']?>" method="POST">
-    <h1>vul hier je recept in</h1>
-    <input type="text" name="naam" id="naam" placeholder="naam recept" value="<?= $CRUD['Name'] ?>">
-    <br><br>
-    <input type="text" name="Categories" id="Categories_input" list="Categories" value="<?= $CRUD['Categorie']?>" placeholder="wat voor categorie valt hij?">
-    <br><br>
-    <textarea name="benodigheden" id="benodigheden" cols="30" rows="10" placeholder="benodigheden">
+    <form action="./Update.php?ID=<?= $CRUD['ID']?>" method="POST">
+        <h1>vul hier je recept in</h1>
+        <input type="text" name="naam" id="naam" placeholder="naam recept" value="<?= $CRUD['Name'] ?>">
+        <br><br>
+        <input type="text" name="Categories" id="Categories_input" list="Categories" value="<?= $CRUD['Categorie']?>" placeholder="wat voor categorie valt hij?">
+        <br><br>
+        <textarea name="benodigheden" id="benodigheden" cols="30" rows="10" placeholder="benodigheden">
         <?= $CRUD['Benodigheden']?>
     </textarea>
-    <br><br>
-    <textarea name="voorstuk" id="voorstuk" cols="30" rows="10" placeholder="voorstuk">
+        <br><br>
+        <textarea name="voorstuk" id="voorstuk" cols="30" rows="10" placeholder="voorstuk">
         <?= $CRUD['Voorstuk']?>
     </textarea>
-    <br><br>
-    <textarea name="StappenPlan" id="StappenPlan" cols="30" rows="10" placeholder="StappenPlan">
+        <br><br>
+        <textarea name="StappenPlan" id="StappenPlan" cols="30" rows="10" placeholder="StappenPlan">
         <?= $CRUD['StappenPlan']?>
     </textarea>
-    <br><br>
-    <textarea name="eindTekst" id="eindTekst" cols="30" rows="10" placeholder="eindTekst">
+        <br><br>
+        <textarea name="eindTekst" id="eindTekst" cols="30" rows="10" placeholder="eindTekst">
         <?= $CRUD['EindTekst']?>
     </textarea>
-    <br><br>
-    <input type="submit" value="submit hier" placeholder="submit hier">
-    <input type="text" value="<?= $CRUD['ID']?>" name="ID" hidden>
-</form>
+        <br><br>
+        <input type="submit" value="submit hier" placeholder="submit hier">
+        <input type="text" value="<?= $CRUD['ID']?>" name="ID" hidden>
+    </form>
 
 <?php } ?>
 
 
 
 <datalist id="Categories">
-    <?php while ($categorie = $stmt->fetch(PDO::FETCH_ASSOC)):?>) { ?>
-        <option value="<?php echo $categorie?>"><?php $categorie ?></option>
-    <?php endwhile; ?>} ?>
+    <?php foreach ($stmt as $category) { ?>
+        <option value="<?= htmlspecialchars($category['Categorie']) ?>">
+            <?= htmlspecialchars($category['Categorie']) ?>
+            <!--             i am Upset with my self-->
+        </option>
+    <?php } ?>
 </datalist>
 
 
