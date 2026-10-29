@@ -1,19 +1,15 @@
-<?php
-?>
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cook masters-OVER ONS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cook masters - Over ons</title>
     <link rel="stylesheet" href="css/frontend.css">
 </head>
 <body>
 <header>
     <div class="logo">
-        <img src="images/hat.png" alt="#">
+        <img src="images/hat.png" alt="Cook masters logo">
         <h1>Cook masters</h1>
     </div>
     <div class="menu">
@@ -22,78 +18,38 @@
         <a href="over_ons.php">Over ons</a>
     </div>
     <div class="register">
-        <a class="sign-in" href="">sign in</a>
-        <a class="sign-up" href="">sign up</a>
+        <a class="sign-in" href="login/index.php">sign in</a>
+        <a class="sign-up" href="login/index.php">sign up</a>
     </div>
 </header>
-
-
 <section>
     <div class="container">
-        <div class="about">
-            <h2>Who we are?</h2>
-        </div>
+        <div class="about"><h2>Wie zijn wij?</h2></div>
         <div class="items">
-            <img class="holder lines lines-bot" src="images/team.png" alt="#">
+            <img class="holder lines lines-bot" src="images/team.png" alt="Het Cook masters team">
         </div>
     </div>
 </section>
-
 <section class="background">
     <div class="container">
-        <div class="about">
-            <h2>Over ons</h2>
-        </div>
+        <div class="about"><h2>Ons team</h2></div>
         <div class="block-items grid">
-            <div class="block-item dark">
-                <img class="size" src="images/yaroslav.png" alt="#">
-                <div class="text">
-                    <h2>Yaroslav</h2>
-                    <p>Frontend DEV</p>
-                </div>
-            </div>
-            <div class="block-item dark">
-                <img class="size" src="images/niels.png" alt="#">
-                <div class="text">
-                    <h2>Niels</h2>
-                    <p>Backend DEV</p>
-                </div>
-            </div>
-            <div class="block-item dark">
-                <img class="size" src="images/sven.png" alt="#">
-                <div class="text">
-                    <h2>Sven</h2>
-                    <p>Backend DEV</p>
-                </div>
-            </div>
-            <div class="block-item dark">
-                <img class="size" src="images/christiaan.png" alt="#">
-                <div class="text">
-                    <h2>Christiaan</h2>
-                    <p>Frontend DEV</p>
-                </div>
-            </div>
+            <div class="block-item dark"><img class="size" src="images/yaroslav.png" alt="Yaroslav"><div class="text"><h2>Yaroslav</h2><p>Frontend developer</p></div></div>
+            <div class="block-item dark"><img class="size" src="images/niels.png" alt="Niels"><div class="text"><h2>Niels</h2><p>Backend developer</p></div></div>
+            <div class="block-item dark"><img class="size" src="images/sven.png" alt="Sven"><div class="text"><h2>Sven</h2><p>Backend developer</p></div></div>
+            <div class="block-item dark"><img class="size" src="images/christiaan.png" alt="Christiaan"><div class="text"><h2>Christiaan</h2><p>Frontend developer</p></div></div>
         </div>
     </div>
     <div class="our-info">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian
-            at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text
-            for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently
-            with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem
-            Ipsum.</p>
+        <p>Wij zijn een team van studenten met een gedeelde interesse in koken en webdevelopment.
+            Met Cook masters willen we recepten overzichtelijk, aantrekkelijk en makkelijk te volgen maken.
+            Iedereen kan een recept vinden, bewaren en zelf in de keuken uitproberen.</p>
     </div>
 </section>
-
-
 <footer>
     <div class="end">
         <p>© 2026 TEAM 9 Company. All rights reserved.</p>
-
-        <a href="#" class="scroll-top">
-            <img src="images/scroll.png" alt="Scroll to top">
-        </a>
+        <a href="#" class="scroll-top"><img src="images/scroll.png" alt="Scroll naar boven"></a>
     </div>
 </footer>
 </body>

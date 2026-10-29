@@ -1,14 +1,13 @@
-// Scroll
 const next = document.getElementById("button-next");
 const prev = document.getElementById("button-prev");
 const image = document.getElementById("image");
 
 let images = [
-    "../images/image.png",
-    "../images/yaroslav.png",
-    "../images/niels.png",
-    "../images/sven.png",
-    "../images/christiaan.png",
+    "images/image.png",
+    "images/yaroslav.png",
+    "images/niels.png",
+    "images/sven.png",
+    "images/christiaan.png",
 ];
 
 let currentImage = 0;
@@ -34,7 +33,6 @@ if (next && prev && image) {
     });
 }
 
-// Big image
 const recipeModal = document.querySelector('#recipe-modal');
 
 if (recipeModal) {
@@ -53,6 +51,12 @@ if (recipeModal) {
 		card.tabIndex = 0;
 
 		const openRecipeModal = () => {
+			const recipeId = card.dataset.recipeId;
+			if (recipeId) {
+				window.location.href = `recept.php?id=${encodeURIComponent(recipeId)}`;
+				return;
+			}
+
 			const image = card.querySelector('img');
 			const title = card.querySelector('h2');
 			const description = card.querySelector('p');

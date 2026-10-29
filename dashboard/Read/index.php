@@ -1,62 +1,25 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-
-$db = new PDO('sqlite:../CRUD-DB.sqlite');
-
-$ID=$_GET['ID'];
-
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$query = $db->QUERY('SELECT * FROM CRUD where ID = :ID');
-$query->bindParam(':ID', $ID);
-$query->execute();
-
-$CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
-
+require_once __DIR__ . '/../../database.php';
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$query = $db->prepare('SELECT * FROM CRUD WHERE ID = :id');
+$query->execute(['id' => $id]);
+$recipe = $query->fetch();
+if (!$recipe) {
+    exit('Recept niet gevonden.');
+}
 ?>
-
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+<html lang="nl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title><?= htmlspecialchars($recipe['Name']) ?></title><link rel="stylesheet" href="../dashboard.css"></head>
 <body>
-        <h1>Hello World!</h1>
-
-        <table border="1px">
-
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Categorie</th>
-                <th>Benodigdheden</th>
-                <th>Voorstuk</th>
-                <th>Stappenplan</th>
-                <th>Eind tekst</th>
-            </tr>
-
-
-        <?php foreach ($CRUD as $row) {
-
-            ?>
-
-            <tr>
-                <td><?= $row['ID']?></td>
-                <td><?= $row['Name']?></td>
-                <td><?= $row['Categorie']?></td>
-                <td><?= $row['Benodigheden']?></td>
-                <td><?= $row['Voorstuk']?></td>
-                <td><?= $row['StappenPlan']?></td>
-                <td><?= $row['EindTekst']?></td>
-            </tr>
-
-            <?php } ?>
-        </table>
+<main class="dashboard-shell"><div class="panel recipe-view">
+    <h1><?= htmlspecialchars($recipe['Name']) ?></h1>
+    <p><strong>Categorie:</strong> <?= htmlspecialchars($recipe['Categorie']) ?></p>
+    <h2>Introductie</h2><p><?= nl2br(htmlspecialchars($recipe['Voorstuk'])) ?></p>
+    <h2>Benodigdheden</h2><p><?= nl2br(htmlspecialchars($recipe['Benodigheden'])) ?></p>
+    <h2>Stappenplan</h2><p><?= nl2br(htmlspecialchars($recipe['StappenPlan'])) ?></p>
+    <h2>Eindtekst</h2><p><?= nl2br(htmlspecialchars($recipe['EindTekst'])) ?></p>
+    <p><a href="../index.php">← Terug naar dashboard</a></p>
+</div></main>
 </body>
 </html>

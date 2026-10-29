@@ -1,19 +1,44 @@
 <?php
+require_once __DIR__ . '/database.php';
+
+$recipes = $db->query('SELECT * FROM CRUD ORDER BY ID DESC')->fetchAll();
+
+$escape = static fn ($value): string => htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
+$category = static fn ($value): string => strtolower(trim((string) $value));
+$recipeCard = static function (array $recipe, string $class, string $textClass = 'light') use ($escape, $category): string {
+    $image = $recipe['Image'] ?: 'images/food.png';
+
+    return '<a class="' . $escape($class) . ' recipe-card"'
+        . ' data-category="' . $escape($category($recipe['Categorie'])) . '"'
+        . ' data-recipe-id="' . (int) $recipe['ID'] . '"'
+        . ' href="recept.php?id=' . (int) $recipe['ID'] . '">'
+        . '<img src="' . $escape($image) . '" alt="' . $escape($recipe['Name']) . '">'
+        . '<div class="' . ($class === 'block-item' ? 'text ' : 'recipe-text ') . $escape($textClass) . '">'
+        . '<h2>' . $escape($recipe['Name']) . '</h2>'
+        . '<p>' . $escape($recipe['Voorstuk']) . '</p>'
+        . '</div></a>';
+};
+
+$cardAt = static function (int $index) use ($recipes): ?array {
+    if (!$recipes) {
+        return null;
+    }
+
+    return $recipes[$index % count($recipes)];
+};
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cook masters-RECEPTEN</title>
     <link rel="stylesheet" href="css/frontend.css">
 </head>
 <body>
 <header>
     <div class="logo">
-        <img src="images/hat.png" alt="#">
+        <img src="images/hat.png" alt="">
         <h1>Cook masters</h1>
     </div>
     <div class="menu">
@@ -22,10 +47,11 @@
         <a href="over_ons.php">Over ons</a>
     </div>
     <div class="register">
-        <a class="sign-in" href="">sign in</a>
-        <a class="sign-up" href="">sign up</a>
+        <a class="sign-in" href="login/index.php">sign in</a>
+        <a class="sign-up" href="login/index.php">sign up</a>
     </div>
 </header>
+
 <section>
     <div class="container">
         <div class="about">
@@ -44,130 +70,67 @@
                 <input id="recipe-search" type="search" placeholder="Bijv. Croissant" autocomplete="off">
             </label>
         </div>
+        <div class="recipe-list-heading">
+            <span>Onze recepten</span>
+            <div class="recipe-list-actions">
+                <a class="recipe-create-button recipe-edit-button" href="dashboard/index.php">Edit recepten</a>
+                <a class="recipe-create-button" href="dashboard/Create/index.php">+ Nieuw recept</a>
+            </div>
+        </div>
         <div class="block-items recepten-grid">
-            <div class="block-item light recipe-card" data-category="hoofdgerechten">
-                <img src="images/food.png" alt="#">
-                <div class="text">
-                    <h2>Shrimps</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
-            <div class="block-item light recipe-card" data-category="hoofdgerechten">
-                <img src="images/food.png" alt="#">
-                <div class="text">
-                    <h2>Shrimps</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
-            <div class="block-item light recipe-card" data-category="hoofdgerechten">
-                <img src="images/food.png" alt="#">
-                <div class="text">
-                    <h2>Shrimps</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
-            <p class="recipe-no-results" hidden>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
+            <?php for ($index = 0; $index < 3; $index++): ?>
+                <?php $recipe = $cardAt($index); ?>
+                <?php if ($recipe): ?>
+                    <?= $recipeCard($recipe, 'block-item', 'light') ?>
+                <?php endif; ?>
+            <?php endfor; ?>
+            <p class="recipe-no-results" <?= $recipes ? 'hidden' : '' ?>>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
         </div>
     </div>
 </section>
+
 <section class="background">
     <div class="container lines">
         <div class="second-block-items">
-            <div class="second-block-item recipe-card" data-category="desserts">
-                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80"
-                     alt="Croissant">
-                <div class="recipe-text light">
-                    <h2>Croissant</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
-
-            <div class="second-block-item recipe-card" data-category="hoofdgerechten">
-                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80"
-                     alt="Tempura">
-                <div class="recipe-text dark">
-                    <h2>Ebi Tempura</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
-
-            <div class="second-block-item recipe-card" data-category="desserts">
-                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
-                     alt="Macaroons">
-                <div class="recipe-text dark">
-                    <h2>Macaroons</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
+            <?php for ($index = 3; $index < 6; $index++): ?>
+                <?php $recipe = $cardAt($index); ?>
+                <?php if ($recipe): ?>
+                    <?= $recipeCard($recipe, 'second-block-item', $index === 3 ? 'light' : 'dark') ?>
+                <?php endif; ?>
+            <?php endfor; ?>
         </div>
     </div>
 </section>
+
 <section>
     <div class="container lines">
         <div class="third-block-items">
-            <div class="third-block-item recipe-card" data-category="desserts">
-                <div class="block-image">
-                    <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
-                         alt="Macaroons">
-                </div>
-                <div class="recipe-text light">
-                    <h2>Croissant</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
-
-            <div class="third-block-item recipe-card" data-category="hoofdgerechten">
-                <div class="recipe-text light">
-                    <h2>Ebi Tempura</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-                <div class="block-image">
-                    <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
-                         alt="Macaroons">
-                </div>
-            </div>
-
-            <div class="third-block-item recipe-card" data-category="desserts">
-                <div class="block-image">
-                    <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=1200&q=80"
-                         alt="Macaroons">
-                </div>
-                <div class="recipe-text light">
-                    <h2>Macaroons</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since 1966</p>
-                </div>
-            </div>
+            <?php for ($index = 0; $index < 3; $index++): ?>
+                <?php $recipe = $cardAt($index + 1); ?>
+                <?php if ($recipe): ?>
+                    <div class="third-block-item <?= $index % 2 === 0 ? 'image-left' : 'image-right' ?> recipe-card"
+                         data-category="<?= $escape($category($recipe['Categorie'])) ?>"
+                         data-recipe-id="<?= (int) $recipe['ID'] ?>"
+                         tabindex="0">
+                        <?php if ($index % 2 === 0): ?><div class="block-image"><img src="<?= $escape($recipe['Image'] ?: 'images/food.png') ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
+                        <div class="recipe-text light">
+                            <h2><?= $escape($recipe['Name']) ?></h2>
+                            <p><?= $escape($recipe['Voorstuk']) ?></p>
+                        </div>
+                        <?php if ($index % 2 !== 0): ?><div class="block-image"><img src="<?= $escape($recipe['Image'] ?: 'images/food.png') ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endfor; ?>
         </div>
     </div>
 </section>
+
 <footer>
     <div class="end">
         <p>© 2026 TEAM 9 Company. All rights reserved.</p>
-
-        <a href="#" class="scroll-top">
-            <img src="images/scroll.png" alt="Scroll to top">
-        </a>
+        <a href="#" class="scroll-top"><img src="images/scroll.png" alt="Scroll to top"></a>
     </div>
 </footer>
-<div class="recipe-modal" id="recipe-modal" hidden>
-    <div class="recipe-modal-content" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title">
-        <button class="recipe-modal-close" type="button" aria-label="Sluiten">&times;</button>
-        <img class="recipe-modal-image" src="" alt="">
-        <div class="recipe-modal-text">
-            <h2 id="recipe-modal-title"></h2>
-            <p></p>
-        </div>
-    </div>
-</div>
 <script src="js/frontend.js"></script>
 </body>
 </html>
