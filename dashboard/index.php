@@ -35,10 +35,7 @@ $CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
     </tr>
 
 
-    <?php foreach ($CRUD as $row) {
-
-        ?>
-
+    <?php foreach ($CRUD as $row) {?>
         <tr>
             <td><?= $row['ID']?></td>
             <td><?= $row['Name']?></td>
