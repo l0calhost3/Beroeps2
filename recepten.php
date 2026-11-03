@@ -108,17 +108,17 @@ $cardAt = static function (int $index) use ($recipes): ?array {
             <?php for ($index = 0; $index < 3; $index++): ?>
                 <?php $recipe = $cardAt($index + 1); ?>
                 <?php if ($recipe): ?>
-                    <div class="third-block-item <?= $index % 2 === 0 ? 'image-left' : 'image-right' ?> recipe-card"
+                    <a class="third-block-item <?= $index % 2 === 0 ? 'image-left' : 'image-right' ?> recipe-card"
                          data-category="<?= $escape($category($recipe['Categorie'])) ?>"
                          data-recipe-id="<?= (int) $recipe['ID'] ?>"
-                         tabindex="0">
+                         href="recept.php?id=<?= (int) $recipe['ID'] ?>">
                         <?php if ($index % 2 === 0): ?><div class="block-image"><img src="<?= $escape($recipe['Image'] ?: 'images/food.png') ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
                         <div class="recipe-text light">
                             <h2><?= $escape($recipe['Name']) ?></h2>
                             <p><?= $escape($recipe['Voorstuk']) ?></p>
                         </div>
                         <?php if ($index % 2 !== 0): ?><div class="block-image"><img src="<?= $escape($recipe['Image'] ?: 'images/food.png') ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
-                    </div>
+                    </a>
                 <?php endif; ?>
             <?php endfor; ?>
         </div>

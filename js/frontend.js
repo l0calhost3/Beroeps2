@@ -2,6 +2,35 @@ const next = document.getElementById("button-next");
 const prev = document.getElementById("button-prev");
 const image = document.getElementById("image");
 
+const recipePage = document.querySelector(".recipe-detail-page");
+
+if (recipePage) {
+    recipePage.classList.add("motion-ready");
+
+    const revealItems = recipePage.querySelectorAll(".recipe-reveal");
+    const revealItem = (item) => item.classList.add("is-visible");
+
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                revealItem(entry.target);
+                currentObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.14 });
+
+        revealItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 100}ms`;
+            observer.observe(item);
+        });
+    } else {
+        revealItems.forEach(revealItem);
+    }
+}
+
 let images = [
     "images/image.png",
     "images/yaroslav.png",
