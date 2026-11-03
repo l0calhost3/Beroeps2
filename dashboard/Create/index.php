@@ -20,7 +20,7 @@ $categories = $stmt->fetchAll();
     <title>Document</title>
 </head>
 <body>
-<form action="./Create.php" method="POST">
+<form action="./Create.php" method="POST" enctype="multipart/form-data">
     <h1>vul hier je recept in</h1>
     <input type="text" name="naam" id="naam" placeholder="naam recept">
     <br><br>
@@ -34,7 +34,11 @@ $categories = $stmt->fetchAll();
     <br><br>
     <textarea name="eindTekst" id="eindTekst" cols="30" rows="10" placeholder="eindTekst"></textarea>
     <br><br>
+    <input type="file" id="file" name="file" accept="images/*">
+    <br><br>
     <input type="submit" value="submit hier" placeholder="submit hier">
+    <br>
+
     <br>
     <a href="../">terug</a>
 </form>

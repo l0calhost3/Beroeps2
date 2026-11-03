@@ -32,6 +32,7 @@ $CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
         <th>more</th>
         <th>update</th>
         <th>Delete</th>
+        <th>IMG</th>
     </tr>
 
 
@@ -47,6 +48,9 @@ $CRUD = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><a href="./Read/index.php?ID=<?= $row['ID']?>">Read</a></td>
             <td><a href="./Update/index.php?ID=<?= $row['ID']?>">Update</a></td>
             <td><a class="confirmation" href="./Delete/Delete.php?ID=<?= $row['ID']?>">Delete</a></td>
+
+            <td><img src="./img/<?= $row['IMG']?>" alt="geen idee"></td>
+
         </tr>
 
     <?php } ?>
