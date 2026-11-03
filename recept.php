@@ -62,7 +62,6 @@ $steps = $recipe ? preg_split('/\R/', trim($recipe['StappenPlan'])) : [];
                     <ol><?php foreach ($steps as $step): ?><li><?= htmlspecialchars($step) ?></li><?php endforeach; ?></ol>
                 </section>
             </div>
-            <div class="recipe-tip"><span>💡</span><p><strong>Tip van Cook masters</strong><br><?= htmlspecialchars($recipe['EindTekst']) ?></p></div>
         </article>
     <?php endif; ?>
 </main>
