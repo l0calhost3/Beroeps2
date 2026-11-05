@@ -26,5 +26,5 @@ $query->execute([
     'ending' => trim($_POST['ending'] ?? ''),
 ]);
 
-header('Location: ../index.php');
+header('Location: ../../recepten.php');
 exit;
