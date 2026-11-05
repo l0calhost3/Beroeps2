@@ -26,6 +26,7 @@ $cardAt = static function (int $index) use ($recipes): ?array {
 
     return $recipes[$index % count($recipes)];
 };
+session_start();
 ?>
 <!doctype html>
 <html lang="nl">
@@ -73,8 +74,10 @@ $cardAt = static function (int $index) use ($recipes): ?array {
         <div class="recipe-list-heading">
             <span>Onze recepten</span>
             <div class="recipe-list-actions">
-                <a class="recipe-create-button recipe-edit-button" href="dashboard/index.php">Edit recepten</a>
-                <a class="recipe-create-button" href="dashboard/Create/index.php">+ Nieuw recept</a>
+                <?php if (!empty($_SESSION['user'])){?>
+                    <a class="recipe-create-button recipe-edit-button" href="dashboard/index.php">Edit recepten</a>
+                    <a class="recipe-create-button" href="dashboard/Create/index.php">+ Nieuw recept</a>
+                <?php } ?>
             </div>
         </div>
         <div class="block-items recepten-grid">
