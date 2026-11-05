@@ -27,11 +27,14 @@ $recipeCard = static function (array $recipe, string $class, string $textClass =
         . '<p>' . $escape($recipe['Voorstuk']) . '</p>'
         . '</div></a>';
 };
+session_start();
 
 $topRecipes = array_slice($recipes, 0, 3);
 $moreTopRecipes = array_slice($recipes, 9);
 $middleRecipes = array_slice($recipes, 3, 3);
 $wideRecipes = array_slice($recipes, 6, 3);
+
+
 ?>
 <!doctype html>
 <html lang="nl">
@@ -79,8 +82,10 @@ $wideRecipes = array_slice($recipes, 6, 3);
         <div class="recipe-list-heading">
             <span>Onze recepten</span>
             <div class="recipe-list-actions">
-                <a class="recipe-create-button recipe-edit-button" href="dashboard/index.php">Edit recepten</a>
-                <a class="recipe-create-button" href="dashboard/Create/index.php">+ Nieuw recept</a>
+                <?php if (!empty($_SESSION['user'])){ ?>
+                    <a class="recipe-create-button recipe-edit-button" href="dashboard/index.php">Edit recepten</a>
+                    <a class="recipe-create-button" href="dashboard/Create/index.php">+ Nieuw recept</a>
+                <?php } ?>
             </div>
         </div>
         <div class="block-items recepten-grid" id="recepten-lijst">
