@@ -6,16 +6,26 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+$currentQuery = $db->prepare('SELECT Image FROM CRUD WHERE ID = :id');
+$currentQuery->execute(['id' => $id]);
+$currentImage = $currentQuery->fetchColumn();
+try {
+    $uploadedImage = saveUploadedRecipeImage($_FILES['image'] ?? []);
+} catch (RuntimeException $exception) {
+    exit('Afbeelding: ' . htmlspecialchars($exception->getMessage(), ENT_QUOTES, 'UTF-8'));
+}
+
 $query = $db->prepare(
     'UPDATE CRUD SET Name = :name, Categorie = :category, Image = :image,
      Voorstuk = :intro, Benodigheden = :ingredients, StappenPlan = :steps, EindTekst = :ending
      WHERE ID = :id'
 );
 $query->execute([
-    'id' => filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT),
+    'id' => $id,
     'name' => trim($_POST['name'] ?? ''),
     'category' => trim($_POST['category'] ?? ''),
-    'image' => trim($_POST['image'] ?? ''),
+    'image' => $uploadedImage ?: $currentImage,
     'intro' => trim($_POST['intro'] ?? ''),
     'ingredients' => trim($_POST['ingredients'] ?? ''),
     'steps' => trim($_POST['steps'] ?? ''),

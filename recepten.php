@@ -5,10 +5,19 @@ $recipes = $db->query('SELECT * FROM CRUD ORDER BY ID DESC')->fetchAll();
 
 $escape = static fn ($value): string => htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 $category = static fn ($value): string => strtolower(trim((string) $value));
-$recipeCard = static function (array $recipe, string $class, string $textClass = 'light') use ($escape, $category): string {
-    $image = $recipe['Image'] ?: 'images/food.png';
+$recipeImage = static function (array $recipe): string {
+    $image = trim((string) ($recipe['Image'] ?? ''));
+    if ($image !== '' && !preg_match('#^(https?:)?//#i', $image) && $image[0] !== '/') {
+        $image = str_starts_with($image, 'images/') ? $image : 'images/' . ltrim($image, '/');
+    }
 
-    return '<a class="' . $escape($class) . ' recipe-card"'
+    return $image ?: 'images/food.png';
+};
+$recipeCard = static function (array $recipe, string $class, string $textClass = 'light', string $extraClass = '', bool $hidden = false) use ($escape, $category, $recipeImage): string {
+    $image = $recipeImage($recipe);
+    $cardClass = trim($class . ' ' . $extraClass);
+
+    return '<a class="' . $escape($cardClass) . ' recipe-card"' . ($hidden ? ' hidden' : '')
         . ' data-category="' . $escape($category($recipe['Categorie'])) . '"'
         . ' data-recipe-id="' . (int) $recipe['ID'] . '"'
         . ' href="recept.php?id=' . (int) $recipe['ID'] . '">'
@@ -19,13 +28,10 @@ $recipeCard = static function (array $recipe, string $class, string $textClass =
         . '</div></a>';
 };
 
-$cardAt = static function (int $index) use ($recipes): ?array {
-    if (!$recipes) {
-        return null;
-    }
-
-    return $recipes[$index % count($recipes)];
-};
+$topRecipes = array_slice($recipes, 0, 3);
+$moreTopRecipes = array_slice($recipes, 9);
+$middleRecipes = array_slice($recipes, 3, 3);
+$wideRecipes = array_slice($recipes, 6, 3);
 ?>
 <!doctype html>
 <html lang="nl">
@@ -35,7 +41,7 @@ $cardAt = static function (int $index) use ($recipes): ?array {
     <title>Cook masters-RECEPTEN</title>
     <link rel="stylesheet" href="css/frontend.css">
 </head>
-<body>
+<body id="top">
 <header>
     <div class="logo">
         <img src="images/hat.png" alt="">
@@ -77,27 +83,31 @@ $cardAt = static function (int $index) use ($recipes): ?array {
                 <a class="recipe-create-button" href="dashboard/Create/index.php">+ Nieuw recept</a>
             </div>
         </div>
-        <div class="block-items recepten-grid">
-            <?php for ($index = 0; $index < 3; $index++): ?>
-                <?php $recipe = $cardAt($index); ?>
-                <?php if ($recipe): ?>
-                    <?= $recipeCard($recipe, 'block-item', 'light') ?>
-                <?php endif; ?>
-            <?php endfor; ?>
+        <div class="block-items recepten-grid" id="recepten-lijst">
+            <?php foreach ($topRecipes as $recipe): ?>
+                <?= $recipeCard($recipe, 'block-item', 'light') ?>
+            <?php endforeach; ?>
+            <?php if ($moreTopRecipes): ?>
+                <div class="more-recipes-content more-top-recipes" id="more-recepten" hidden>
+                    <?php foreach ($moreTopRecipes as $recipe): ?>
+                        <?= $recipeCard($recipe, 'block-item', 'light') ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
             <p class="recipe-no-results" <?= $recipes ? 'hidden' : '' ?>>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
         </div>
+        <?php if ($moreTopRecipes): ?>
+            <button class="recipe-more-button" type="button" aria-expanded="false" aria-controls="more-recepten">More</button>
+        <?php endif; ?>
     </div>
 </section>
 
 <section class="background">
     <div class="container lines">
         <div class="second-block-items">
-            <?php for ($index = 3; $index < 6; $index++): ?>
-                <?php $recipe = $cardAt($index); ?>
-                <?php if ($recipe): ?>
-                    <?= $recipeCard($recipe, 'second-block-item', $index === 3 ? 'light' : 'dark') ?>
-                <?php endif; ?>
-            <?php endfor; ?>
+            <?php foreach ($middleRecipes as $index => $recipe): ?>
+                <?= $recipeCard($recipe, 'second-block-item', $index === 0 ? 'light' : 'dark') ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -105,22 +115,19 @@ $cardAt = static function (int $index) use ($recipes): ?array {
 <section>
     <div class="container lines">
         <div class="third-block-items">
-            <?php for ($index = 0; $index < 3; $index++): ?>
-                <?php $recipe = $cardAt($index + 1); ?>
-                <?php if ($recipe): ?>
-                    <a class="third-block-item <?= $index % 2 === 0 ? 'image-left' : 'image-right' ?> recipe-card"
-                         data-category="<?= $escape($category($recipe['Categorie'])) ?>"
-                         data-recipe-id="<?= (int) $recipe['ID'] ?>"
-                         href="recept.php?id=<?= (int) $recipe['ID'] ?>">
-                        <?php if ($index % 2 === 0): ?><div class="block-image"><img src="<?= $escape($recipe['Image'] ?: 'images/food.png') ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
-                        <div class="recipe-text light">
-                            <h2><?= $escape($recipe['Name']) ?></h2>
-                            <p><?= $escape($recipe['Voorstuk']) ?></p>
-                        </div>
-                        <?php if ($index % 2 !== 0): ?><div class="block-image"><img src="<?= $escape($recipe['Image'] ?: 'images/food.png') ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
-                    </a>
-                <?php endif; ?>
-            <?php endfor; ?>
+            <?php foreach ($wideRecipes as $index => $recipe): ?>
+                <a class="third-block-item <?= $index % 2 === 0 ? 'image-left' : 'image-right' ?> recipe-card"
+                    data-category="<?= $escape($category($recipe['Categorie'])) ?>"
+                    data-recipe-id="<?= (int) $recipe['ID'] ?>"
+                    href="recept.php?id=<?= (int) $recipe['ID'] ?>">
+                    <?php if ($index % 2 === 0): ?><div class="block-image"><img src="<?= $escape($recipeImage($recipe)) ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
+                    <div class="recipe-text light">
+                        <h2><?= $escape($recipe['Name']) ?></h2>
+                        <p><?= $escape($recipe['Voorstuk']) ?></p>
+                    </div>
+                    <?php if ($index % 2 !== 0): ?><div class="block-image"><img src="<?= $escape($recipeImage($recipe)) ?>" alt="<?= $escape($recipe['Name']) ?>"></div><?php endif; ?>
+                </a>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -128,9 +135,10 @@ $cardAt = static function (int $index) use ($recipes): ?array {
 <footer>
     <div class="end">
         <p>© 2026 TEAM 9 Company. All rights reserved.</p>
-        <a href="#" class="scroll-top"><img src="images/scroll.png" alt="Scroll to top"></a>
+        <a href="#top" class="scroll-top"><img src="images/scroll.png" alt="Scroll to top"></a>
     </div>
 </footer>
+<a class="back-to-top" href="#top" aria-label="Terug naar boven">↑</a>
 <script src="js/frontend.js"></script>
 </body>
 </html>

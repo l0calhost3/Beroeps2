@@ -135,6 +135,9 @@ if (recipeFilters) {
     const searchInput = recipeFilters.querySelector('#recipe-search');
     const recipeCards = document.querySelectorAll('.recipe-card');
     const noResults = document.querySelector('.recipe-no-results');
+    const moreButton = document.querySelector('.recipe-more-button');
+    const moreContent = document.querySelector('.more-recipes-content');
+    let moreRecipesVisible = false;
     let selectedCategory = 'all';
 
     const filterRecipes = () => {
@@ -143,8 +146,11 @@ if (recipeFilters) {
 
         recipeCards.forEach((card) => {
             const title = card.querySelector('h2');
+            const category = card.dataset.category || '';
             const matchesCategory = selectedCategory === 'all' || card.dataset.category === selectedCategory;
-            const matchesSearch = title && title.textContent.toLocaleLowerCase().includes(searchTerm);
+            const matchesSearch = title
+                && (title.textContent.toLocaleLowerCase().includes(searchTerm)
+                    || category.includes(searchTerm));
             const isVisible = matchesCategory && matchesSearch;
 
             card.hidden = !isVisible;
@@ -167,5 +173,31 @@ if (recipeFilters) {
     });
 
     searchInput.addEventListener('input', filterRecipes);
+    if (moreButton) {
+        moreButton.addEventListener('click', () => {
+            moreRecipesVisible = !moreRecipesVisible;
+            moreContent.hidden = !moreRecipesVisible;
+            moreButton.setAttribute('aria-expanded', String(moreRecipesVisible));
+            moreButton.textContent = moreRecipesVisible ? 'Less' : 'More';
+            filterRecipes();
+        });
+    }
     filterRecipes();
+}
+
+document.querySelectorAll(".recipe-card img").forEach((recipeImage) => {
+    recipeImage.addEventListener("error", () => {
+        recipeImage.src = "images/food.png";
+    }, { once: true });
+});
+
+const backToTop = document.querySelector(".back-to-top");
+
+if (backToTop) {
+    const updateBackToTop = () => {
+        backToTop.classList.toggle("is-visible", window.scrollY > 420);
+    };
+
+    window.addEventListener("scroll", updateBackToTop, { passive: true });
+    updateBackToTop();
 }

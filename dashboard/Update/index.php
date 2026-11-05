@@ -14,11 +14,11 @@ if (!$recipe) {
 <body>
 <main class="dashboard-shell"><div class="panel">
     <h1>Recept wijzigen</h1>
-    <form class="recipe-form" method="post" action="Update.php">
+    <form class="recipe-form" method="post" action="Update.php" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= (int) $recipe['ID'] ?>">
         <label>Naam<br><input name="name" required value="<?= htmlspecialchars($recipe['Name']) ?>"></label><br><br>
         <label>Categorie<br><input name="category" required value="<?= htmlspecialchars($recipe['Categorie']) ?>"></label><br><br>
-        <label>Afbeelding URL<br><input name="image" type="url" value="<?= htmlspecialchars($recipe['Image'] ?? '') ?>"></label><br><br>
+        <label>Nieuwe afbeelding (optioneel)<br><input name="image" type="file" accept="image/jpeg,image/png,image/gif,image/webp"></label><br><br>
         <label>Introductie<br><textarea name="intro" required rows="4" cols="60"><?= htmlspecialchars($recipe['Voorstuk']) ?></textarea></label><br><br>
         <label>Benodigdheden (één per regel)<br><textarea name="ingredients" required rows="8" cols="60"><?= htmlspecialchars($recipe['Benodigheden']) ?></textarea></label><br><br>
         <label>Stappenplan (één stap per regel)<br><textarea name="steps" required rows="8" cols="60"><?= htmlspecialchars($recipe['StappenPlan']) ?></textarea></label><br><br>
@@ -26,5 +26,6 @@ if (!$recipe) {
         <div class="form-actions"><button type="submit">Wijzigingen opslaan</button><a class="button button-secondary" href="../index.php">Annuleren</a></div>
     </form>
     </div></main>
-</body>
+    <script src="../image-upload.js"></script>
+    </body>
 </html>
