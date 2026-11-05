@@ -43,7 +43,7 @@ $submit = $_POST["SUBMIT"];
         if ($login_user['user'] === $user && $login_user['pass'] === hash('sha256', $pass)) {
             session_start();
             $_SESSION['user'] = $login_user['user'];
-            header("location: ../dashboard");
+            header("location: ../recepten.php");
 
 
         }
