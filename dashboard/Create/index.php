@@ -13,7 +13,7 @@
         <label>Benodigdheden (één per regel)<br><textarea name="ingredients" required rows="8" cols="60"></textarea></label><br><br>
         <label>Stappenplan (één stap per regel)<br><textarea name="steps" required rows="8" cols="60"></textarea></label><br><br>
         <label>Eindtekst / tip<br><textarea name="ending" required rows="4" cols="60"></textarea></label><br><br>
-        <div class="form-actions"><button type="submit">Recept opslaan</button><a class="button button-secondary" href="../recepten.php">Annuleren</a></div>
+        <div class="form-actions"><button type="submit">Recept opslaan</button><a class="button button-secondary" href="../../recepten.php">Annuleren</a></div>
     </form>
     </div></main>
 </body>
