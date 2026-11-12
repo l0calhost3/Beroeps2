@@ -33,8 +33,8 @@ session_start()
     <div class="menu"><a href="index.php">Home</a><a href="recepten.php">Recepten</a><a href="over_ons.php">Over ons</a></div>
     <?php if (empty($_SESSION['user'])){?>
         <div class="register">
-            <a class="sign-in" href="login/index.php">sign in</a>
-            <a class="sign-up" href="login/index.php">sign up</a>
+            <a class="sign-in" href="login/index.php?a=in">sign in</a>
+            <a class="sign-up" href="login/index.php?a=up">sign up</a>
         </div>
     <?php } else{?>
         <div class="register">
