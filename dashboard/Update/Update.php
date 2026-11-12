@@ -19,7 +19,7 @@ try {
 
 $query = $db->prepare(
     'UPDATE CRUD SET Name = :name, Categorie = :category, Image = :image,
-     Voorstuk = :intro, Benodigheden = :ingredients, StappenPlan = :steps, EindTekst = :ending
+     Voorstuk = :intro, Benodigheden = :ingredients, StappenPlan = :steps
      WHERE ID = :id'
 );
 $query->execute([
@@ -30,7 +30,6 @@ $query->execute([
     'intro' => trim($_POST['intro'] ?? ''),
     'ingredients' => trim($_POST['ingredients'] ?? ''),
     'steps' => trim($_POST['steps'] ?? ''),
-    'ending' => trim($_POST['ending'] ?? ''),
 ]);
 
 header('Location: ../index.php');

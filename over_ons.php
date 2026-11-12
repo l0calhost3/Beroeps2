@@ -22,12 +22,12 @@ session_start();
     </div>
     <?php if (empty($_SESSION['user'])){?>
         <div class="register">
-            <a class="sign-in" href="login/index.php?a=in">sign in</a>
-            <a class="sign-up" href="login/index.php?a=up">sign up</a>
+            <a class="sign-in" href="login/index.php?a=in">Sign in</a>
+            <a class="sign-up" href="login/index.php?a=up">Sign up</a>
         </div>
     <?php } else{?>
         <div class="register">
-            <a class="sign-in" href="./logout.php">logout</a>
+            <a class="sign-in" href="./logout.php">Logout</a>
         </div>
     <?php } ?>
 </header>

@@ -23,7 +23,6 @@ if (!$recipe) {
         <label>Introductie<br><textarea name="intro" required rows="4" cols="60"><?= htmlspecialchars($recipe['Voorstuk']) ?></textarea></label><br><br>
         <label>Benodigdheden (één per regel)<br><textarea name="ingredients" required rows="8" cols="60"><?= htmlspecialchars($recipe['Benodigheden']) ?></textarea></label><br><br>
         <label>Stappenplan (één stap per regel)<br><textarea name="steps" required rows="8" cols="60"><?= htmlspecialchars($recipe['StappenPlan']) ?></textarea></label><br><br>
-        <label>Eindtekst / tip<br><textarea name="ending" required rows="4" cols="60"><?= htmlspecialchars($recipe['EindTekst']) ?></textarea></label><br><br>
         <div class="form-actions"><button type="submit">Wijzigingen opslaan</button><a class="button button-secondary" href="../index.php">Annuleren</a></div>
     </form>
     </div></main>

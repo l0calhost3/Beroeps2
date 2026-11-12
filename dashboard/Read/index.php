@@ -19,7 +19,6 @@ if (!$recipe) {
     <h2>Introductie</h2><p><?= nl2br(htmlspecialchars($recipe['Voorstuk'])) ?></p>
     <h2>Benodigdheden</h2><p><?= nl2br(htmlspecialchars($recipe['Benodigheden'])) ?></p>
     <h2>Stappenplan</h2><p><?= nl2br(htmlspecialchars($recipe['StappenPlan'])) ?></p>
-    <h2>Eindtekst</h2><p><?= nl2br(htmlspecialchars($recipe['EindTekst'])) ?></p>
     <p><a href="../index.php">← Terug naar dashboard</a></p>
 </div></main>
 </body>
