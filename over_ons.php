@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="nl">
 <head>
@@ -17,10 +20,16 @@
         <a href="recepten.php">Recepten</a>
         <a href="over_ons.php">Over ons</a>
     </div>
-    <div class="register">
-        <a class="sign-in" href="login/index.php">sign in</a>
-        <a class="sign-up" href="login/index.php">sign up</a>
-    </div>
+    <?php if (empty($_SESSION['user'])){?>
+        <div class="register">
+            <a class="sign-in" href="login/index.php">sign in</a>
+            <a class="sign-up" href="login/index.php">sign up</a>
+        </div>
+    <?php } else{?>
+        <div class="register">
+            <a class="sign-in" href="./logout.php">logout</a>
+        </div>
+    <?php } ?>
 </header>
 <section>
     <div class="container">
