@@ -12,6 +12,12 @@ if ($id) {
 
 $ingredients = $recipe ? preg_split('/\R/', trim($recipe['Benodigheden'])) : [];
 $steps = $recipe ? preg_split('/\R/', trim($recipe['StappenPlan'])) : [];
+
+function LOGOUT()
+{
+    session_destroy();
+}
+session_start()
 ?>
 <!doctype html>
 <html lang="nl">
@@ -25,7 +31,16 @@ $steps = $recipe ? preg_split('/\R/', trim($recipe['StappenPlan'])) : [];
 <header>
     <div class="logo"><img src="images/hat.png" alt=""><h1>Cook masters</h1></div>
     <div class="menu"><a href="index.php">Home</a><a href="recepten.php">Recepten</a><a href="over_ons.php">Over ons</a></div>
-    <div class="register"><a class="sign-in" href="login/index.php">sign in</a><a class="sign-up" href="login/index.php">sign up</a></div>
+    <?php if (empty($_SESSION['user'])){?>
+        <div class="register">
+            <a class="sign-in" href="login/index.php?a=in">Sign in</a>
+            <a class="sign-up" href="login/index.php?a=up">Sign up</a>
+        </div>
+    <?php } else{?>
+        <div class="register">
+            <a class="sign-in" href="./logout.php">Logout</a>
+        </div>
+    <?php } ?>
 </header>
 <main class="recipe-detail-page">
     <div class="recipe-breadcrumb"><a href="recepten.php">Alle recepten</a><span>/</span><strong><?= $recipe ? htmlspecialchars($recipe['Name']) : 'Recept' ?></strong></div>

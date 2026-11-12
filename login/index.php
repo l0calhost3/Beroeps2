@@ -1,3 +1,8 @@
+<?php
+$a = $_GET["a"];
+
+?>
+
 
 <!doctype html>
 <html lang="nl">
@@ -19,6 +24,7 @@
             <h1>Welkom in onze keuken</h1>
             <p>Log in of maak een account aan om meer recepten te ontdekken.</p>
         </div>
+        <?php if ($a == "in") { ?>
         <div class="auth-forms">
             <div class="auth-card">
                 <h2>Inloggen</h2>
@@ -34,6 +40,7 @@
                     <button type="submit">Inloggen <span>→</span></button>
                 </form>
             </div>
+            <?php } else if ($a == "up") { ?>
             <div class="auth-card register-card">
                 <h2>Account aanmaken</h2>
                 <p class="card-description">Nieuw hier? Word lid van onze community.</p>
@@ -48,6 +55,7 @@
                     <button type="submit">Account aanmaken <span>→</span></button>
                 </form>
             </div>
+            <?php } ?>
         </div>
     </div>
 </main>

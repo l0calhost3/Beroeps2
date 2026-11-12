@@ -55,10 +55,16 @@ $wideRecipes = array_slice($recipes, 6, 3);
         <a href="recepten.php">Recepten</a>
         <a href="over_ons.php">Over ons</a>
     </div>
-    <div class="register">
-        <a class="sign-in" href="login/index.php">sign in</a>
-        <a class="sign-up" href="login/index.php">sign up</a>
-    </div>
+    <?php if (empty($_SESSION['user'])){?>
+        <div class="register">
+            <a class="sign-in" href="login/index.php?a=in">Sign in</a>
+            <a class="sign-up" href="login/index.php?a=up">Sign up</a>
+        </div>
+    <?php } else{?>
+        <div class="register">
+            <a class="sign-in" href="./logout.php">Logout</a>
+        </div>
+    <?php } ?>
 </header>
 
 <section>
@@ -99,6 +105,12 @@ $wideRecipes = array_slice($recipes, 6, 3);
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
+            <p class="recipe-no-results" <?= $recipes ? 'hidden' : '' ?>>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
+        </div>
+        <div class="block-items recepten-grid filtered-recipes-grid" id="gefilterde-recepten-lijst" hidden>
+            <?php foreach ($recipes as $recipe): ?>
+                <?= $recipeCard($recipe, 'block-item', 'light', 'filter-recipe-card') ?>
+            <?php endforeach; ?>
             <p class="recipe-no-results" <?= $recipes ? 'hidden' : '' ?>>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
         </div>
         <?php if ($moreTopRecipes): ?>

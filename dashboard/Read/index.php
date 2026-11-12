@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../../database.php';
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 $query = $db->prepare('SELECT * FROM CRUD WHERE ID = :id');
@@ -18,7 +19,6 @@ if (!$recipe) {
     <h2>Introductie</h2><p><?= nl2br(htmlspecialchars($recipe['Voorstuk'])) ?></p>
     <h2>Benodigdheden</h2><p><?= nl2br(htmlspecialchars($recipe['Benodigheden'])) ?></p>
     <h2>Stappenplan</h2><p><?= nl2br(htmlspecialchars($recipe['StappenPlan'])) ?></p>
-    <h2>Eindtekst</h2><p><?= nl2br(htmlspecialchars($recipe['EindTekst'])) ?></p>
     <p><a href="../index.php">← Terug naar dashboard</a></p>
 </div></main>
 </body>

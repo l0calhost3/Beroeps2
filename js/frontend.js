@@ -133,7 +133,9 @@ const recipeFilters = document.querySelector('.recipe-filters');
 if (recipeFilters) {
     const filterButtons = recipeFilters.querySelectorAll('.recipe-filter');
     const searchInput = recipeFilters.querySelector('#recipe-search');
-    const recipeCards = document.querySelectorAll('.recipe-card');
+    const recipeCards = document.querySelectorAll('.filter-recipe-card');
+    const filteredRecipesGrid = document.querySelector('.filtered-recipes-grid');
+    const originalRecipesGrid = document.querySelector('#recepten-lijst');
     const noResults = document.querySelector('.recipe-no-results');
     const moreButton = document.querySelector('.recipe-more-button');
     const moreContent = document.querySelector('.more-recipes-content');
@@ -142,7 +144,15 @@ if (recipeFilters) {
 
     const filterRecipes = () => {
         const searchTerm = searchInput.value.trim().toLocaleLowerCase();
+        const isFiltering = selectedCategory !== 'all' || searchTerm !== '';
         let visibleRecipes = 0;
+
+        filteredRecipesGrid.hidden = !isFiltering;
+        originalRecipesGrid.hidden = isFiltering;
+        moreButton?.toggleAttribute('hidden', isFiltering);
+        document.querySelectorAll('.second-block-items, .third-block-items').forEach((section) => {
+            section.closest('section').hidden = isFiltering;
+        });
 
         recipeCards.forEach((card) => {
             const title = card.querySelector('h2');
@@ -159,7 +169,10 @@ if (recipeFilters) {
             }
         });
 
-        noResults.hidden = visibleRecipes > 0;
+        filteredRecipesGrid.querySelector('.recipe-no-results').hidden = !isFiltering || visibleRecipes > 0;
+        if (!isFiltering) {
+            noResults.hidden = visibleRecipes > 0;
+        }
     };
 
     filterButtons.forEach((button) => {
