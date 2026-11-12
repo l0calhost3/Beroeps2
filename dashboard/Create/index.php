@@ -1,47 +1,21 @@
-<?php
-try {
-//connectie database
-    $pdo = new PDO("sqlite:../CRUD-DB.sqlite");
-}catch(PDOException $e){
-    echo $e->getMessage();
-}
-$sql = "SELECT DISTINCT categorie FROM CRUD ORDER BY categorie ASC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-?>
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+<html lang="nl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Recept toevoegen</title><link rel="stylesheet" href="../dashboard.css"></head>
 <body>
-<form action="./Create.php" method="POST">
-    <h1>vul hier je recept in</h1>
-    <input type="text" name="naam" id="naam" placeholder="naam recept">
-    <br><br>
-    <input type="text" name="Categories" id="Categories_input" list="Categories" placeholder="wat voor categorie valt hij?">
-    <br><br>
-    <textarea name="benodigheden" id="benodigheden" cols="30" rows="10" placeholder="benodigheden"></textarea>
-    <br><br>
-    <textarea name="voorstuk" id="voorstuk" cols="30" rows="10" placeholder="voorstuk"></textarea>
-    <br><br>
-    <textarea name="StappenPlan" id="StappenPlan" cols="30" rows="10" placeholder="StappenPlan"></textarea>
-    <br><br>
-    <textarea name="eindTekst" id="eindTekst" cols="30" rows="10" placeholder="eindTekst"></textarea>
-    <br><br>
-    <input type="submit" value="submit hier" placeholder="submit hier">
-</form>
-
-
-
-<datalist id="Categories">
-    <?php while ($categorie = $stmt->fetch(PDO::FETCH_ASSOC)):?>) { ?>
-            <option value="<?php echo $categorie?>"><?php $categorie ?></option>
-    <?php endwhile; ?>} ?>
-</datalist>
-</body>
+<main class="dashboard-shell"><div class="panel">
+    <h1>Recept toevoegen</h1>
+    <p class="muted">Vul elk onderdeel in. Ingrediënten en stappen schrijf je één per regel.</p>
+    <form class="recipe-form" method="post" action="Create.php" enctype="multipart/form-data">
+        <label>Naam<br><input name="name" required></label><br><br>
+        <label>Categorie<br><input name="category" required placeholder="bijv. desserts"></label><br><br>
+        <label>Afbeelding<br><input name="image" type="file" accept="image/jpeg,image/png,image/gif,image/webp"></label><br><br>
+        <label>Introductie<br><textarea name="intro" required rows="4" cols="60"></textarea></label><br><br>
+        <label>Benodigdheden (één per regel)<br><textarea name="ingredients" required rows="8" cols="60"></textarea></label><br><br>
+        <label>Stappenplan (één stap per regel)<br><textarea name="steps" required rows="8" cols="60"></textarea></label><br><br>
+        <label>Eindtekst / tip<br><textarea name="ending" required rows="4" cols="60"></textarea></label><br><br>
+        <div class="form-actions"><button type="submit">Recept opslaan</button><a class="button button-secondary" href="../../recepten.php">Annuleren</a></div>
+    </form>
+    </div></main>
+    <script src="../image-upload.js"></script>
+    </body>
 </html>

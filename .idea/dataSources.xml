@@ -22,7 +22,7 @@
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/dashboard/CRUD/CRUD-DB.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="CRUD-DB [2]" uuid="0d9304ab-d96e-4dbd-adbb-ec0487702ff0">
+    <data-source source="LOCAL" name="CRUD-DB [2]" uuid="b31b1933-5d5d-49c2-9787-47049e318d99">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

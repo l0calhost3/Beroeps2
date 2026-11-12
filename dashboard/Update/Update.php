@@ -1,39 +1,36 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+require_once __DIR__ . '/../../database.php';
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: index.php');
+    exit;
+}
+
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+$currentQuery = $db->prepare('SELECT Image FROM CRUD WHERE ID = :id');
+$currentQuery->execute(['id' => $id]);
+$currentImage = $currentQuery->fetchColumn();
 try {
-//connectie database
-    $pdo = new PDO("sqlite:../CRUD-DB.sqlite");
-}catch(PDOException $e){
-    echo $e->getMessage();
+    $uploadedImage = saveUploadedRecipeImage($_FILES['image'] ?? []);
+} catch (RuntimeException $exception) {
+    exit('Afbeelding: ' . htmlspecialchars($exception->getMessage(), ENT_QUOTES, 'UTF-8'));
 }
 
-$naam = $_POST["naam"];
-$categorie = $_POST["Categories"];
-$benodigdheden = $_POST["benodigheden"];
-$voorstuk = $_POST["voorstuk"];
-$stappenplanning = $_POST["StappenPlan"];
-$eindtekst = $_POST["eindTekst"];
-$ID = $_POST["ID"];
+$query = $db->prepare(
+    'UPDATE CRUD SET Name = :name, Categorie = :category, Image = :image,
+     Voorstuk = :intro, Benodigheden = :ingredients, StappenPlan = :steps, EindTekst = :ending
+     WHERE ID = :id'
+);
+$query->execute([
+    'id' => $id,
+    'name' => trim($_POST['name'] ?? ''),
+    'category' => trim($_POST['category'] ?? ''),
+    'image' => $uploadedImage ?: $currentImage,
+    'intro' => trim($_POST['intro'] ?? ''),
+    'ingredients' => trim($_POST['ingredients'] ?? ''),
+    'steps' => trim($_POST['steps'] ?? ''),
+    'ending' => trim($_POST['ending'] ?? ''),
+]);
 
-if (!$_SERVER["REQUEST_METHOD"] == "POST") {
-    echo 'request methode is niet goedgekeurd';
-}
-if (empty($naam) || empty($categorie) || empty($benodigdheden) || empty($voorstuk) || empty($eindtekst)) {
-    echo 'iets is leeg';
-}
-
-
-$sql = "UPDATE CRUD SET Name = :naam, Categorie = :categorie, Benodigheden = :benodigdheden, Voorstuk = :voorstuk, StappenPlan = :stappenplanning, EindTekst = :eindtekst WHERE ID = :id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':naam', $naam);
-$stmt->bindParam(':categorie', $categorie);
-$stmt->bindParam(':benodigdheden', $benodigdheden);
-$stmt->bindParam(':voorstuk', $voorstuk);
-$stmt->bindParam(':stappenplanning', $stappenplanning);
-$stmt->bindParam(':eindtekst', $eindtekst);
-$stmt->bindParam(':id', $ID);
-
-$stmt->execute();
-header("location: ../index.php");
+header('Location: ../index.php');
+exit;

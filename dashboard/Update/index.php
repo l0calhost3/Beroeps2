@@ -1,77 +1,31 @@
 <?php
-try {
-//connectie database
-    $pdo = new PDO("sqlite:../CRUD-DB.sqlite");
-}catch(PDOException $e){
-    echo $e->getMessage();
+require_once __DIR__ . '/../../database.php';
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$query = $db->prepare('SELECT * FROM CRUD WHERE ID = :id');
+$query->execute(['id' => $id]);
+$recipe = $query->fetch();
+if (!$recipe) {
+    exit('Recept niet gevonden.');
 }
-$sql = "SELECT DISTINCT categorie FROM CRUD ORDER BY categorie ASC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-
-$ID=$_GET['ID'];
-
-
-
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$query = $pdo->QUERY('SELECT * FROM CRUD where ID = :ID');
-$query->bindParam(':ID', $ID);
-$query->execute();
-
-$CRUDS = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+<html lang="nl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Recept wijzigen</title><link rel="stylesheet" href="../dashboard.css"></head>
 <body>
-
-<?php foreach ($CRUDS as $CRUD) { ?>
-
-<form action="./Update.php?ID=<?= $CRUD['ID']?>" method="POST">
-    <h1>vul hier je recept in</h1>
-    <input type="text" name="naam" id="naam" placeholder="naam recept" value="<?= $CRUD['Name'] ?>">
-    <br><br>
-    <input type="text" name="Categories" id="Categories_input" list="Categories" value="<?= $CRUD['Categorie']?>" placeholder="wat voor categorie valt hij?">
-    <br><br>
-    <textarea name="benodigheden" id="benodigheden" cols="30" rows="10" placeholder="benodigheden">
-        <?= $CRUD['Benodigheden']?>
-    </textarea>
-    <br><br>
-    <textarea name="voorstuk" id="voorstuk" cols="30" rows="10" placeholder="voorstuk">
-        <?= $CRUD['Voorstuk']?>
-    </textarea>
-    <br><br>
-    <textarea name="StappenPlan" id="StappenPlan" cols="30" rows="10" placeholder="StappenPlan">
-        <?= $CRUD['StappenPlan']?>
-    </textarea>
-    <br><br>
-    <textarea name="eindTekst" id="eindTekst" cols="30" rows="10" placeholder="eindTekst">
-        <?= $CRUD['EindTekst']?>
-    </textarea>
-    <br><br>
-    <input type="submit" value="submit hier" placeholder="submit hier">
-    <input type="text" value="<?= $CRUD['ID']?>" name="ID" hidden>
-</form>
-
-<?php } ?>
-
-
-
-<datalist id="Categories">
-    <?php while ($categorie = $stmt->fetch(PDO::FETCH_ASSOC)):?>) { ?>
-        <option value="<?php echo $categorie?>"><?php $categorie ?></option>
-    <?php endwhile; ?>} ?>
-</datalist>
-
-
-</body>
+<main class="dashboard-shell"><div class="panel">
+    <h1>Recept wijzigen</h1>
+    <form class="recipe-form" method="post" action="Update.php" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?= (int) $recipe['ID'] ?>">
+        <label>Naam<br><input name="name" required value="<?= htmlspecialchars($recipe['Name']) ?>"></label><br><br>
+        <label>Categorie<br><input name="category" required value="<?= htmlspecialchars($recipe['Categorie']) ?>"></label><br><br>
+        <label>Nieuwe afbeelding (optioneel)<br><input name="image" type="file" accept="image/jpeg,image/png,image/gif,image/webp"></label><br><br>
+        <label>Introductie<br><textarea name="intro" required rows="4" cols="60"><?= htmlspecialchars($recipe['Voorstuk']) ?></textarea></label><br><br>
+        <label>Benodigdheden (één per regel)<br><textarea name="ingredients" required rows="8" cols="60"><?= htmlspecialchars($recipe['Benodigheden']) ?></textarea></label><br><br>
+        <label>Stappenplan (één stap per regel)<br><textarea name="steps" required rows="8" cols="60"><?= htmlspecialchars($recipe['StappenPlan']) ?></textarea></label><br><br>
+        <label>Eindtekst / tip<br><textarea name="ending" required rows="4" cols="60"><?= htmlspecialchars($recipe['EindTekst']) ?></textarea></label><br><br>
+        <div class="form-actions"><button type="submit">Wijzigingen opslaan</button><a class="button button-secondary" href="../index.php">Annuleren</a></div>
+    </form>
+    </div></main>
+    <script src="../image-upload.js"></script>
+    </body>
 </html>
-
-
