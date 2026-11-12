@@ -107,6 +107,12 @@ $wideRecipes = array_slice($recipes, 6, 3);
             <?php endif; ?>
             <p class="recipe-no-results" <?= $recipes ? 'hidden' : '' ?>>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
         </div>
+        <div class="block-items recepten-grid filtered-recipes-grid" id="gefilterde-recepten-lijst" hidden>
+            <?php foreach ($recipes as $recipe): ?>
+                <?= $recipeCard($recipe, 'block-item', 'light', 'filter-recipe-card') ?>
+            <?php endforeach; ?>
+            <p class="recipe-no-results" <?= $recipes ? 'hidden' : '' ?>>Geen recepten gevonden. Probeer een andere zoekterm of categorie.</p>
+        </div>
         <?php if ($moreTopRecipes): ?>
             <button class="recipe-more-button" type="button" aria-expanded="false" aria-controls="more-recepten">More</button>
         <?php endif; ?>

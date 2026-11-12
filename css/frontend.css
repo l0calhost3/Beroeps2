@@ -411,6 +411,20 @@ p {
     align-items: stretch;
 }
 
+.filtered-recipes-grid {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+}
+
+.filter-recipe-card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #b7cda5 0%, #9fb485 100%);
+}
+
+.filter-recipe-card .text {
+    flex: 1;
+}
+
 .recepten-grid .block-item {
     display: flex;
     flex-direction: column;
