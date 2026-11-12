@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../database.php';
-
+session_start();
 $recipes = $db->query('SELECT * FROM CRUD ORDER BY ID DESC')->fetchAll();
 ?>
 <!doctype html>

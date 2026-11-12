@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../../database.php';
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 $query = $db->prepare('SELECT * FROM CRUD WHERE ID = :id');
