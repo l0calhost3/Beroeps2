@@ -13,8 +13,8 @@ try {
 }
 
 $query = $db->prepare(
-    'INSERT INTO CRUD (Name, Categorie, Image, Voorstuk, Benodigheden, StappenPlan, EindTekst)
-     VALUES (:name, :category, :image, :intro, :ingredients, :steps, :ending)'
+    'INSERT INTO CRUD (Name, Categorie, Image, Voorstuk, Benodigheden, StappenPlan)
+     VALUES (:name, :category, :image, :intro, :ingredients, :steps)'
 );
 $query->execute([
     'name' => trim($_POST['name'] ?? ''),
@@ -23,7 +23,6 @@ $query->execute([
     'intro' => trim($_POST['intro'] ?? ''),
     'ingredients' => trim($_POST['ingredients'] ?? ''),
     'steps' => trim($_POST['steps'] ?? ''),
-    'ending' => trim($_POST['ending'] ?? ''),
 ]);
 
 header('Location: ../../recepten.php');
